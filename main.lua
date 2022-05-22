@@ -107,6 +107,7 @@ function WindowTable:Create()
 		elementsListing.Parent = newPage
 		elementsListing.SortOrder = Enum.SortOrder.LayoutOrder
 		
+		print("tabName is ", tabName)
 		
 	end
 	return TabHandler
