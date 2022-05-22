@@ -1,6 +1,6 @@
 local WindowTable = {}
 
-function WindowTable:CreateWindow()
+function WindowTable:CreateWindow(hubname, gamename)
 	
 	-- Gui to Lua
 	-- Version: 3.2
@@ -25,6 +25,10 @@ function WindowTable:CreateWindow()
 	local pagesFolder = Instance.new("Folder")
 	local newPage = Instance.new("ScrollingFrame")
 	local elementsListing = Instance.new("UIListLayout")
+	local tabCorner = Instance.new("UICorner")
+	
+	hubName.Text = hubname
+	gameName.Text = gamename
 
 	--Properties:
 
