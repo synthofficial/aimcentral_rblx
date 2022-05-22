@@ -122,11 +122,11 @@ function WindowTable:Create()
 			local buttonCorner = Instance.new("UICorner")
 			
 			TextButton.Parent = newPage
-			TextButton.BackgroundColor3 = Color3.fromRGB(44, 48, 53)
-			TextButton.Position = UDim2.new(0.0245098043, 0, 0, 0)
-			TextButton.Size = UDim2.new(0, 291, 0, 32)
+			TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			TextButton.Position = UDim2.new(0,0,0.1,0)
+			TextButton.Size = UDim2.new(0, 396, 0, 34)
 			TextButton.AutoButtonColor = false
-			TextButton.Font = Enum.Font.Gotham
+			TextButton.Font = Enum.Font.JosefinSans
 			TextButton.Text = btnText
 			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextButton.TextSize = 14.000
