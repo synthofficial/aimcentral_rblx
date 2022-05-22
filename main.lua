@@ -52,7 +52,7 @@ function WindowTable:Create()
 	tabListing.Parent = allTabs
 	tabListing.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	tabListing.SortOrder = Enum.SortOrder.LayoutOrder
-	tabListing.Padding = UDim.new(10, 10)
+	tabListing.Padding = UDim.new(0, 2)
 
 	allPages.Name = "allPages"
 	allPages.Parent = MainWindow
