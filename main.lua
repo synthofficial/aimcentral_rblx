@@ -111,6 +111,8 @@ function WindowTable:Create()
 			}):Play()
 		end)
 		
+		UICorner.CornerRadius = UDim.new(0, 3)
+		UICorner.Name = "sideCorner"		
 		UICorner.Parent = tabButton
 		
 		newPage.Name = "newPage"
@@ -127,7 +129,7 @@ function WindowTable:Create()
 		
 		
 	end
-	
+	return TabHandler
 end
 
 return WindowTable
