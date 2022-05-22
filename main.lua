@@ -413,11 +413,12 @@ function WindowTable:Create()
 			DropdownButton.MouseButton1Click:connect(function()
 				
 				if dropopened then
-					
+					dropopened = false
 					DropdownHolder.Visible = true
 					print("holder is visible")
 					
 				else
+					dropopened = true
 					DropdownHolder.Visible = false
 					
 				end
