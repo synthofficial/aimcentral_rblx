@@ -7,6 +7,10 @@ function WindowTable:CreateWindow()
 
 	-- Instances:
 	
+	if game.CoreGui:FindFirstChild("[yourScreenGuiName") then
+		game.CoreGui:FindFirstChild("[yourScreenGuiName"):Destroy()
+	end
+	
 	local Main = Instance.new("ScreenGui")
 	local MainWindow = Instance.new("Frame")
 	local mainCorner = Instance.new("UICorner")
@@ -92,8 +96,6 @@ function WindowTable:CreateWindow()
 		tabButton.Text = tabName
 		tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		tabButton.TextSize = 14.000
-		
-		print("tabName is ", tabName)
 		
 		UICorner.Parent = tabButton
 		
