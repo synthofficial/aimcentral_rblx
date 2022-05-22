@@ -169,7 +169,7 @@ function WindowTable:Create()
 			toggle.Parent = toggleButton
 			toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 			toggle.Position = UDim2.new(0, 0, 0.1, 0)
-			toggle.Size = UDim2.new(0, 396, 0, 34)
+			toggle.Size = UDim2.new(0, 22, 0, 22)
 
 			toggleCorner.CornerRadius = UDim.new(0, 888)
 			toggleCorner.Name = "toggleCorner"
