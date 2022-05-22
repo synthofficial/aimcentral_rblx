@@ -92,27 +92,7 @@ function WindowTable:Create()
 		tabButton.Text = "Example"
 		tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		tabButton.TextSize = 14.000
-		tabButton.MouseButton1Click:Connect(function()
-			for i,v in next, pagesFolder:GetChildren() do -- We get all the pages that we added
-				v.Visible = false	-- then we make them invisible 
-			end 
-			newPage.Visible = true	-- We make current page visible but not others
-
-			--Animations Below  -- Optional
-			for i,v in next, allTabs:GetChildren() do	-- We get all the elements inside the frame
-				if v:IsA("TextButton") then -- We can't animate UIListLayout, so we check if its a TextButton
-					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(115, 49, 37) -- We animate other Tab Buttons and making the current one seem Checked
-					}):Play()
-				end
-			end
-			game.TweenService:Create(tabButton, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Color3.fromRGB(255, 109, 83) -- We animate other Tab Buttons and making the current one seem Checked
-			}):Play()
-		end)
 		
-		UICorner.CornerRadius = UDim.new(0, 3)
-		UICorner.Name = "sideCorner"		
 		UICorner.Parent = tabButton
 		
 		newPage.Name = "newPage"
@@ -129,7 +109,7 @@ function WindowTable:Create()
 		
 		
 	end
-	return TabHandler
+	
 end
 
 return WindowTable
