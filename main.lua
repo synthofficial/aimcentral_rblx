@@ -317,16 +317,12 @@ function WindowTable:Create()
 			end)
 		end
 		
-		function ElementHandler:Dropdown(name, itemlist, callback)
+		function ElementHandler:Dropdown(dropdownname, list, callback)
 			
-			name = name or "Dropdown"
-			itemlist = itemlist
-			
-			callback = callback or function() end
-			
-			local itemnumber = 0
-			local pagesize
-			local dropopened = false
+			local list = list or {}
+			local callback = callback or function() end
+			local framesize = 0
+			local itemcount = 0
 			
 			local DropdownButton = Instance.new("TextButton")
 			local DropdownCorner = Instance.new("UICorner")
@@ -365,7 +361,6 @@ function WindowTable:Create()
 			DropdownHolder.Position = UDim2.new(0, 0, 1.07647073, 0)
 			DropdownHolder.Size = UDim2.new(0, 396, 0, 110)
 			DropdownHolder.ZIndex = 2
-			DropdownHolder.Visible = false
 
 			DropdownLayout.Name = "DropdownLayout"
 			DropdownLayout.Parent = DropdownHolder
@@ -379,7 +374,6 @@ function WindowTable:Create()
 			DropdownValue.Font = Enum.Font.JosefinSans
 			DropdownValue.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownValue.TextSize = 14.000
-			DropdownValue.Visible = false
 
 			DropdownValueCorner.Name = "DropdownValueCorner"
 			DropdownValueCorner.Parent = DropdownValue
@@ -388,44 +382,58 @@ function WindowTable:Create()
 			DropdownPadding.Parent = DropdownHolder
 			DropdownPadding.PaddingTop = UDim.new(0, 5)
 			
-			for i,v in next, itemlist do
-				
-				itemnumber = itemnumber + 1
-				
-				if itemnumber <= 4 then
-						
-						pagesize = pagesize + 50
-						
-				end
-				
-				local Item = Instance.new("TextButton")
-				
-				Item.Name = "DropdownValue"
-				Item.Parent = DropdownHolder
-				Item.Text = v or "Item"
-				Item.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-				Item.Size = UDim2.new(0, 396, 0, 34)
-				Item.Font = Enum.Font.JosefinSans
-				Item.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Item.TextSize = 14.000
-				
-			end
+			local toggled = false
 			
-			DropdownButton.MouseButton1Click:connect(function()
+			DropdownButton.MouseButton1Click:Connect(function()
 				
-				if dropopened then
-					dropopened = false
+				if toggled == true then
 					DropdownHolder.Visible = true
-					print("holder is visible")
-					
 				else
-					dropopened = true
 					DropdownHolder.Visible = false
-					
 				end
 				
 			end)
-						
+			
+			for i, v in next, list do
+				
+				itemcount = itemcount + 1
+				if itemcount <= 4 then
+					framesize = framesize + 40 + 2
+				end
+				
+				local Item = Instance.new("TextButton")
+				local ItemCorner = Instance.new("UICorner")
+				local ItemStroke = Instance.new("UIStroke")
+
+				Item.Name = "Item"
+				Item.Parent = DropdownHolder
+				Item.BackgroundColor3 = Color3.fromRGB(24, 27, 33)
+				Item.BorderSizePixel = 0
+				Item.Position = UDim2.new(0.0280000009, 0, 0.419714272, 0)
+				Item.Size = UDim2.new(0, 334, 0, 40)
+				Item.AutoButtonColor = false
+				Item.Font = Enum.Font.GothamSemibold
+				Item.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Item.TextSize = 14.000
+				Item.TextTransparency = 0.200
+				Item.Text = v or "Item"
+
+				ItemCorner.CornerRadius = UDim.new(0, 4)
+				ItemCorner.Name = "ItemCorner"
+				ItemCorner.Parent = Item
+
+				ItemStroke.Name = "ItemStroke"
+				ItemStroke.Parent = Item
+				ItemStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+				ItemStroke.Color = Color3.fromRGB(46, 46, 47)
+				ItemStroke.Thickness = 1
+
+				Item.MouseButton1Click:Connect(function()
+					callback(v)
+				end)
+
+			end
+			
 		end
 			
 		
