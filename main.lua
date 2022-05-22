@@ -89,7 +89,7 @@ function WindowTable:CreateWindow()
 		tabButton.Position = UDim2.new(-0.0192307699, 0, 0.0152221676, 0)
 		tabButton.Size = UDim2.new(0.1053719, 109, 0.00999999978, 32)
 		tabButton.Font = Enum.Font.JosefinSans
-		tabButton.Text = "Example"
+		tabButton.Text = tabName
 		tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		tabButton.TextSize = 14.000
 		
