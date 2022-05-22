@@ -107,9 +107,35 @@ function WindowTable:Create()
 		elementsListing.Parent = newPage
 		elementsListing.SortOrder = Enum.SortOrder.LayoutOrder
 		
-		print("tabName is ", tabName)
-		
+		local ElementHandler = {}
+
+		function ElementHandler:Button(btnText, callback)
+			btnText = btnText
+			callback = callback or function() end
+			
+			local TextButton = Instance.new("TextButton")
+			local buttonCorner = Instance.new("UICorner")
+			
+			TextButton.Parent = newPage
+			TextButton.BackgroundColor3 = Color3.fromRGB(44, 48, 53)
+			TextButton.Position = UDim2.new(0.0245098043, 0, 0, 0)
+			TextButton.Size = UDim2.new(0, 291, 0, 32)
+			TextButton.AutoButtonColor = false
+			TextButton.Font = Enum.Font.Gotham
+			TextButton.Text = btnText
+			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.TextSize = 14.000
+			TextButton.ZIndex = 1
+			TextButton.MouseButton1Click:Connect(function()
+				callback()
+			end)
+			buttonCorner.CornerRadius = UDim.new(0, 3)
+			buttonCorner.Name = "buttonCorner"
+			buttonCorner.Parent = TextButton
+		end
+		return ElementHandler
 	end
+	
 	return TabHandler
 	
 end
