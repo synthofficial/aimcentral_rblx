@@ -255,7 +255,7 @@ function WindowTable:Create()
 			sliderFill.Name = "sliderFill"
 			sliderFill.Parent = sliderInfo
 			sliderFill.BackgroundColor3 = Color3.fromRGB(255, 109, 83)
-			sliderFill.Position = UDim2.new(-0.01, 0, 1, 0)
+			sliderFill.Position = UDim2.new(-0.001, 0, 1, 0)
 			sliderFill.Size = UDim2.new(0, 0, 0, 6)
 
 			sliderFillCorner.Name = "sliderFillCorner"
