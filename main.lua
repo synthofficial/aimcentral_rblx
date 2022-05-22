@@ -93,7 +93,7 @@ function WindowTable:CreateWindow()
 		tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		tabButton.TextSize = 14.000
 		
-		print(tabName)
+		print("tabName is ", tabName)
 		
 		UICorner.Parent = tabButton
 		
