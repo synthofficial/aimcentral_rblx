@@ -6,7 +6,11 @@ function WindowTable:CreateWindow()
 	-- Version: 3.2
 
 	-- Instances:
-
+	
+	if game.CoreGui:FindFirstChild("[yourScreenGuiName") then
+		game.CoreGui:FindFirstChild("[yourScreenGuiName"):Destroy()
+	end
+	
 	local Main = Instance.new("ScreenGui")
 	local MainWindow = Instance.new("Frame")
 	local mainCorner = Instance.new("UICorner")
@@ -89,7 +93,7 @@ function WindowTable:CreateWindow()
 		tabButton.Position = UDim2.new(-0.0192307699, 0, 0.0152221676, 0)
 		tabButton.Size = UDim2.new(0.1053719, 109, 0.00999999978, 32)
 		tabButton.Font = Enum.Font.JosefinSans
-		tabButton.Text = tabName
+		tabButton.Text = tabName.Text
 		tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		tabButton.TextSize = 14.000
 		
