@@ -255,7 +255,7 @@ function WindowTable:Create()
 			sliderFill.Name = "sliderFill"
 			sliderFill.Parent = sliderInfo
 			sliderFill.BackgroundColor3 = Color3.fromRGB(255, 109, 83)
-			sliderFill.Position = UDim2.new(0.00510204071, 0, 1, 0)
+			sliderFill.Position = UDim2.new(-0.01, 0, 1, 0)
 			sliderFill.Size = UDim2.new(0, 3, 0, 6)
 
 			sliderFillCorner.Name = "sliderFillCorner"
@@ -279,14 +279,14 @@ function WindowTable:Create()
 			local releaseconnection
 			
 			sliderButton.MouseButton1Down:Connect(function()
-				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * sliderFill.AbsoluteSize.X) + tonumber(minvalue)) or 0
+				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 392) * sliderFill.AbsoluteSize.X) + tonumber(minvalue)) or 0
 				pcall(function()
 					callback(Value)
 				end)
 				sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 318), 0, 16)
 				moveconnection = mouse.Move:Connect(function()
 					sliderValue.Text = Value
-					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
+					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 392) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
 					pcall(function()
 						callback(Value)
 					end)
@@ -294,11 +294,11 @@ function WindowTable:Create()
 				end)
 				releaseconnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
+						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 392) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
 						pcall(function()
 							callback(Value)
 						end)
-						sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 318), 0, 16)
+						sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 16)
 						moveconnection:Disconnect()
 						releaseconnection:Disconnect()
 					end
