@@ -79,6 +79,7 @@ function WindowTable:Create()
 		local UICorner = Instance.new("UICorner")-- our tab corner
 		local newPage = Instance.new("ScrollingFrame") -- our page
 		local elementsListing = Instance.new("UIListLayout") -- our page listing
+		
 		local elementsPadding = Instance.new("UIPadding")
 
 		elementsPadding.Name = "elementsPadding"
@@ -111,7 +112,9 @@ function WindowTable:Create()
 
 		elementsListing.Name = "elementsListing"
 		elementsListing.Parent = newPage
+		elementsListing.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		elementsListing.SortOrder = Enum.SortOrder.LayoutOrder
+		elementsListing.Padding = UDim.new(0, 5)
 		
 		local ElementHandler = {}
 
