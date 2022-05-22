@@ -85,7 +85,6 @@ function WindowTable:Create()
 		elementsPadding.Parent = newPage
 		elementsPadding.PaddingRight = UDim.new(0, 5)
 		elementsPadding.PaddingTop = UDim.new(0, 5)
-		elementsPadding.PaddingLeft = UDim.new(0, 5)
 		
 		tabButton.Name = "tabButton"
 		tabButton.Parent = allTabs
