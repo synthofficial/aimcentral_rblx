@@ -79,7 +79,12 @@ function WindowTable:Create()
 		local UICorner = Instance.new("UICorner")-- our tab corner
 		local newPage = Instance.new("ScrollingFrame") -- our page
 		local elementsListing = Instance.new("UIListLayout") -- our page listing
-		
+		local elementsPadding = Instance.new("UIPadding")
+
+		elementsPadding.Name = "elementsPadding"
+		elementsPadding.Parent = newPage
+		elementsPadding.PaddingRight = UDim.new(0, 5)
+		elementsPadding.PaddingTop = UDim.new(0, 5)
 		
 		tabButton.Name = "tabButton"
 		tabButton.Parent = allTabs
