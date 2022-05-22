@@ -153,8 +153,8 @@ function WindowTable:Create()
 			
 			toggleButton.Name = "toggleButton"
 			toggleButton.Parent = newPage
-			toggleButton.BackgroundColor3 = Color3.fromRGB(44, 48, 53)
-			toggleButton.Position = UDim2.new(0.0245098043, 0, 0, 0)
+			toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			toggleButton.Position = UDim2.new(0, 0, 0.1, 0)
 			toggleButton.Size = UDim2.new(0, 291, 0, 32)
 			toggleButton.Font = Enum.Font.JosefinSans
 			toggleButton.Text = ""
@@ -168,7 +168,7 @@ function WindowTable:Create()
 			toggle.Name = "toggle"
 			toggle.Parent = toggleButton
 			toggle.BackgroundColor3 = Color3.fromRGB(61, 67, 74)
-			toggle.Position = UDim2.new(0.0240549836, 0, 0.15625, 0)
+			toggle.Position = UDim2.new(0, 0, 0.1, 0)
 			toggle.Size = UDim2.new(0, 22, 0, 22)
 
 			toggleCorner.CornerRadius = UDim.new(0, 888)
@@ -179,7 +179,7 @@ function WindowTable:Create()
 			toggleInfo.Parent = toggleButton
 			toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			toggleInfo.BackgroundTransparency = 1.000
-			toggleInfo.Position = UDim2.new(0.130584195, 0, 0, 0)
+			toggleInfo.Position = UDim2.new(0, 0, 0.1, 0)
 			toggleInfo.Size = UDim2.new(0, 230, 0, 32)
 			toggleInfo.Font = Enum.Font.JosefinSans
 			toggleInfo.Text = togInfo --- We set our custom text here
