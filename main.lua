@@ -179,7 +179,7 @@ function WindowTable:Create()
 			toggleInfo.Parent = toggleButton
 			toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			toggleInfo.BackgroundTransparency = 1.000
-			toggleInfo.Position = UDim2.new(0.093, 0, 0, 0)
+			toggleInfo.Position = UDim2.new(0.018, 0, 0.171, 0)
 			toggleInfo.Size = UDim2.new(0, 396, 0, 34)
 			toggleInfo.Font = Enum.Font.JosefinSans
 			toggleInfo.Text = togInfo --- We set our custom text here
