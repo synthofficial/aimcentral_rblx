@@ -73,7 +73,7 @@ function WindowTable:CreateWindow()
 	local TabHandler = {}
 	
 	function TabHandler:CreateTab(tabName)
-		tabName = tabName or "New Tab"
+		tabName = tabName
 		
 		local tabButton = Instance.new("TextButton") -- our tab
 		local UICorner = Instance.new("UICorner")-- our tab corner
