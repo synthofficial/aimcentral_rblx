@@ -365,6 +365,7 @@ function WindowTable:Create()
 			DropdownHolder.Position = UDim2.new(0, 0, 1.07647073, 0)
 			DropdownHolder.Size = UDim2.new(0, 396, 0, 110)
 			DropdownHolder.ZIndex = 2
+			DropdownHolder.Visible = false
 
 			DropdownLayout.Name = "DropdownLayout"
 			DropdownLayout.Parent = DropdownHolder
@@ -378,6 +379,7 @@ function WindowTable:Create()
 			DropdownValue.Font = Enum.Font.JosefinSans
 			DropdownValue.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownValue.TextSize = 14.000
+			DropdownValue.Visible = false
 
 			DropdownValueCorner.Name = "DropdownValueCorner"
 			DropdownValueCorner.Parent = DropdownValue
@@ -408,14 +410,14 @@ function WindowTable:Create()
 				
 			end
 			
-			DropdownValue.MouseButton1Click:connect(function()
+			DropdownButton.MouseButton1Click:connect(function()
 				
 				if dropopened then
 					
-					DropdownHolder.Size = UDim2.new(0, 396,0, 110)
+					DropdownHolder.Visible = true
 					
 				else
-					DropdownHolder.Size = UDim2.new(0, 396, 0, 110)
+					DropdownHolder.Visible = false
 					
 				end
 				
