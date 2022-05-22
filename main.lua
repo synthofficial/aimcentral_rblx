@@ -223,6 +223,17 @@ function WindowTable:Create()
 			local sliderFill = Instance.new("Frame")
 			local sliderFillCorner = Instance.new("UICorner")
 			local sliderValue = Instance.new("TextLabel")
+			local sliderFrame = Instance.new("Frame")
+			local sliderFrameCorner = Instance.new("UICorner")
+			
+			sliderFrame.Name = "sliderFrame"
+			sliderFrame.Parent = newPage
+			sliderFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			sliderFrame.Position = UDim2.new(0.00868486334, 0, 0.242990658, 0)
+			sliderFrame.Size = UDim2.new(0, 396, 0, 35)
+
+			sliderFrameCorner.Name = "sliderFrameCorner"
+			sliderFrameCorner.Parent = sliderFrame
 			
 			sliderInfo.Name = "sliderInfo"
 			sliderInfo.Parent = newPage
@@ -305,6 +316,114 @@ function WindowTable:Create()
 				end)
 			end)
 		end
+		
+		function ElementHandler:Dropdown(name, itemlist, callback)
+			
+			name = name or "Dropdown"
+			itemlist = itemlist
+			
+			callback = callback or function() end
+			
+			local itemnumber = 0
+			local pagesize
+			local dropopened = false
+			
+			local DropdownButton = Instance.new("TextButton")
+			local DropdownCorner = Instance.new("UICorner")
+			local DropdownArrow = Instance.new("ImageLabel")
+			local DropdownHolder = Instance.new("ScrollingFrame")
+			local DropdownLayout = Instance.new("UIListLayout")
+			local DropdownValue = Instance.new("TextButton")
+			local DropdownValueCorner = Instance.new("UICorner")
+			local DropdownPadding = Instance.new("UIPadding")
+			
+			DropdownButton.Name = "DropdownButton"
+			DropdownButton.Parent = newPage
+			DropdownButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			DropdownButton.Position = UDim2.new(0.251861036, 0, -0.0233644862, 5)
+			DropdownButton.Size = UDim2.new(0, 396, 0, 34)
+			DropdownButton.Font = Enum.Font.JosefinSans
+			DropdownButton.Text = "Dropdown"
+			DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropdownButton.TextSize = 14.000
+
+			DropdownCorner.Name = "DropdownCorner"
+			DropdownCorner.Parent = DropdownButton
+
+			DropdownArrow.Name = "DropdownArrow"
+			DropdownArrow.Parent = DropdownButton
+			DropdownArrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DropdownArrow.BackgroundTransparency = 1.000
+			DropdownArrow.Position = UDim2.new(0.926767707, 0, 0.235294119, 0)
+			DropdownArrow.Size = UDim2.new(0, 21, 0, 18)
+			DropdownArrow.Image = "rbxassetid://8577156451"
+
+			DropdownHolder.Name = "DropdownHolder"
+			DropdownHolder.Parent = DropdownButton
+			DropdownHolder.Active = true
+			DropdownHolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			DropdownHolder.Position = UDim2.new(0, 0, 1.07647073, 0)
+			DropdownHolder.Size = UDim2.new(0, 396, 0, 110)
+			DropdownHolder.ZIndex = 2
+
+			DropdownLayout.Name = "DropdownLayout"
+			DropdownLayout.Parent = DropdownHolder
+			DropdownLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			DropdownLayout.Padding = UDim.new(0, 3)
+
+			DropdownValue.Name = "DropdownValue"
+			DropdownValue.Parent = DropdownHolder
+			DropdownValue.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			DropdownValue.Size = UDim2.new(0, 396, 0, 34)
+			DropdownValue.Font = Enum.Font.JosefinSans
+			DropdownValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropdownValue.TextSize = 14.000
+
+			DropdownValueCorner.Name = "DropdownValueCorner"
+			DropdownValueCorner.Parent = DropdownValue
+
+			DropdownPadding.Name = "DropdownPadding"
+			DropdownPadding.Parent = DropdownHolder
+			DropdownPadding.PaddingTop = UDim.new(0, 5)
+			
+			for i,v in next, itemlist do
+				
+				itemnumber = itemnumber + 1
+				
+				if itemnumber <= 4 then
+						
+						pagesize = pagesize + 50
+						
+				end
+				
+				local Item = Instance.new("TextButton")
+				
+				Item.Name = "DropdownValue"
+				Item.Parent = v or "Item"
+				Item.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+				Item.Size = UDim2.new(0, 396, 0, 34)
+				Item.Font = Enum.Font.JosefinSans
+				Item.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Item.TextSize = 14.000
+				
+			end
+			
+			DropdownValue.MouseButton1Click:connect(function()
+				
+				if dropopened then
+					
+					DropdownHolder.Size = UDim2.new(0, 396,0, 110)
+					
+				else
+					DropdownHolder.Size = UDim2.new(0, 396, 0, 110)
+					
+				end
+				
+			end)
+						
+		end
+			
+		
 		return ElementHandler
 	end
 	
