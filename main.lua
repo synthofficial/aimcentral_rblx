@@ -110,6 +110,8 @@ function WindowTable:Create()
 		
 	end
 	
+	return TabHandler
+	
 end
 
 return WindowTable
