@@ -208,6 +208,103 @@ function WindowTable:Create()
 			
 		end
 		
+		function ElementHandler:Slider(text, minvalue, maxvalue, callback)
+			
+			text = text
+			minvalue = minvalue or 0
+			maxvalue = maxvalue or 0
+			
+			callback = callback or function() end
+			
+			local sliderInfo = Instance.new("TextLabel")
+			local sliderCorner = Instance.new("UICorner")
+			local sliderButton = Instance.new("TextButton")
+			local sliderButtonCorner = Instance.new("UICorner")
+			local sliderFill = Instance.new("Frame")
+			local sliderFillCorner = Instance.new("UICorner")
+			local sliderValue = Instance.new("TextLabel")
+			
+			sliderInfo.Name = "sliderInfo"
+			sliderInfo.Parent = newPage
+			sliderInfo.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			sliderInfo.BackgroundTransparency = 1.000
+			sliderInfo.Position = UDim2.new(0.0223325063, 0, 0.325189382, 0)
+			sliderInfo.Size = UDim2.new(0, 392, 0, 17)
+			sliderInfo.Font = Enum.Font.JosefinSans
+			sliderInfo.Text = "Slider"
+			sliderInfo.TextColor3 = Color3.fromRGB(255, 255, 255)
+			sliderInfo.TextSize = 14.000
+			sliderInfo.TextXAlignment = Enum.TextXAlignment.Left
+
+			sliderCorner.Name = "sliderCorner"
+			sliderCorner.Parent = sliderInfo
+
+			sliderButton.Name = "sliderButton"
+			sliderButton.Parent = sliderInfo
+			sliderButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			sliderButton.Position = UDim2.new(0, 0, 1, 0)
+			sliderButton.Size = UDim2.new(0, 392, 0, 6)
+			sliderButton.Font = Enum.Font.JosefinSans
+			sliderButton.Text = ""
+			sliderButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			sliderButton.TextSize = 14.000
+
+			sliderButtonCorner.Name = "sliderButtonCorner"
+			sliderButtonCorner.Parent = sliderButton
+
+			sliderFill.Name = "sliderFill"
+			sliderFill.Parent = sliderInfo
+			sliderFill.BackgroundColor3 = Color3.fromRGB(255, 109, 83)
+			sliderFill.Position = UDim2.new(0.00510204071, 0, 1, 0)
+			sliderFill.Size = UDim2.new(0, 3, 0, 6)
+
+			sliderFillCorner.Name = "sliderFillCorner"
+			sliderFillCorner.Parent = sliderFill
+
+			sliderValue.Name = "sliderValue"
+			sliderValue.Parent = sliderInfo
+			sliderValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			sliderValue.BackgroundTransparency = 1.000
+			sliderValue.Position = UDim2.new(0.926020443, 0, -0.29411763, 0)
+			sliderValue.Size = UDim2.new(0, 29, 0, 26)
+			sliderValue.Font = Enum.Font.JosefinSans
+			sliderValue.Text = "0"
+			sliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+			sliderValue.TextSize = 14.000
+			
+			local mouse = game.Players.LocalPlayer:GetMouse()
+			local uis = game:GetService("UserInputService")
+			local Value
+			local moveconnection
+			local releaseconnection
+			
+			sliderButton.MouseButton1Down:Connect(function()
+				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * sliderFill.AbsoluteSize.X) + tonumber(minvalue)) or 0
+				pcall(function()
+					callback(Value)
+				end)
+				sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 318), 0, 16)
+				moveconnection = mouse.Move:Connect(function()
+					sliderValue.Text = Value
+					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
+					pcall(function()
+						callback(Value)
+					end)
+					sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 318), 0, 16)
+				end)
+				releaseconnection = uis.InputEnded:Connect(function(Mouse)
+					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
+						pcall(function()
+							callback(Value)
+						end)
+						sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 318), 0, 16)
+						moveconnection:Disconnect()
+						releaseconnection:Disconnect()
+					end
+				end)
+			end)
+		end
 		return ElementHandler
 	end
 	
