@@ -106,6 +106,7 @@ function WindowTable:Create()
 		newPage.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 		newPage.Size = UDim2.new(0, 408, 0, 224)
 		newPage.ScrollBarThickness = 4
+		newPage.ScrollBarImageColor3 = Color3.fromRGB(250, 128, 114)
 		
 
 		elementsListing.Name = "elementsListing"
@@ -125,7 +126,6 @@ function WindowTable:Create()
 			TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 			TextButton.Position = UDim2.new(0,0,0.1,0)
 			TextButton.Size = UDim2.new(0, 396, 0, 34)
-			TextButton.AutoButtonColor = false
 			TextButton.Font = Enum.Font.JosefinSans
 			TextButton.Text = btnText
 			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -134,7 +134,7 @@ function WindowTable:Create()
 			TextButton.MouseButton1Click:Connect(function()
 				callback()
 			end)
-			buttonCorner.CornerRadius = UDim.new(0, 3)
+			buttonCorner.CornerRadius = UDim.new(0, 8)
 			buttonCorner.Name = "buttonCorner"
 			buttonCorner.Parent = TextButton
 		end
