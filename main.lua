@@ -139,6 +139,74 @@ function WindowTable:Create()
 			buttonCorner.Name = "buttonCorner"
 			buttonCorner.Parent = TextButton
 		end
+		
+		function ElementHandler:Toggle(togInfo, callback)
+			
+			togInfo = togInfo
+			callback = callback or function() end
+			
+			local toggleButton = Instance.new("TextButton")
+			local toggleButtonCover = Instance.new("UICorner")
+			local toggle = Instance.new("Frame")
+			local toggleCorner = Instance.new("UICorner")
+			local toggleInfo = Instance.new("TextLabel")
+			
+			toggleButton.Name = "toggleButton"
+			toggleButton.Parent = newPage
+			toggleButton.BackgroundColor3 = Color3.fromRGB(44, 48, 53)
+			toggleButton.Position = UDim2.new(0.0245098043, 0, 0, 0)
+			toggleButton.Size = UDim2.new(0, 291, 0, 32)
+			toggleButton.Font = Enum.Font.JosefinSans
+			toggleButton.Text = ""
+			toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			toggleButton.TextSize = 14.000
+			
+			toggleButtonCover.CornerRadius = UDim.new(0, 3)
+			toggleButtonCover.Name = "toggleButtonCover"
+			toggleButtonCover.Parent = toggleButton
+
+			toggle.Name = "toggle"
+			toggle.Parent = toggleButton
+			toggle.BackgroundColor3 = Color3.fromRGB(61, 67, 74)
+			toggle.Position = UDim2.new(0.0240549836, 0, 0.15625, 0)
+			toggle.Size = UDim2.new(0, 22, 0, 22)
+
+			toggleCorner.CornerRadius = UDim.new(0, 888)
+			toggleCorner.Name = "toggleCorner"
+			toggleCorner.Parent = toggle
+
+			toggleInfo.Name = "toggleInfo"
+			toggleInfo.Parent = toggleButton
+			toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			toggleInfo.BackgroundTransparency = 1.000
+			toggleInfo.Position = UDim2.new(0.130584195, 0, 0, 0)
+			toggleInfo.Size = UDim2.new(0, 230, 0, 32)
+			toggleInfo.Font = Enum.Font.JosefinSans
+			toggleInfo.Text = togInfo --- We set our custom text here
+			toggleInfo.TextColor3 = Color3.fromRGB(255, 255, 255)
+			toggleInfo.TextSize = 14.000
+			toggleInfo.TextXAlignment = Enum.TextXAlignment.Left
+			
+			local tog = false
+			
+			toggleButton.MouseButton1Click:Connect(function()
+				tog = not tog
+				callback(tog) -- Callbacks whenever we toggle
+				if tog then 
+					game.TweenService:Create(toggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundColor3 = Color3.fromRGB(255, 109, 83)
+					}):Play()
+					--- We put our animation here when the toggle is on
+				else
+					game.TweenService:Create(toggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundColor3 = Color3.fromRGB(61, 67, 74)
+					}):Play()
+					---We Put our animation here when the toggle is off
+				end
+			end)
+			
+		end
+		
 		return ElementHandler
 	end
 	
