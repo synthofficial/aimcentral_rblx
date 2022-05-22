@@ -1,6 +1,6 @@
 local WindowTable = {}
 
-function WindowTable:CreateWindow(gamename, hubname)
+function WindowTable:CreateWindow()
 	
 	-- Gui to Lua
 	-- Version: 3.2
@@ -25,14 +25,11 @@ function WindowTable:CreateWindow(gamename, hubname)
 	local pagesFolder = Instance.new("Folder")
 	local newPage = Instance.new("ScrollingFrame")
 	local elementsListing = Instance.new("UIListLayout")
-	
-	hubName = hubname
-	gameName = gamename
 
 	--Properties:
 
 	Main.Name = "Main"
-	Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	Main.Parent = game.CoreGui
 	Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainWindow.Name = "MainWindow"
