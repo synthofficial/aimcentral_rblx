@@ -388,8 +388,10 @@ function WindowTable:Create()
 				
 				if toggled == true then
 					toggled = nil
+					print("on")
 					DropdownHolder.Visible = true
 				else
+					print("off")
 					DropdownHolder.Visible = false
 				end
 				
