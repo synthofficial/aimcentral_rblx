@@ -401,7 +401,8 @@ function WindowTable:Create()
 				local Item = Instance.new("TextButton")
 				
 				Item.Name = "DropdownValue"
-				Item.Parent = v or "Item"
+				Item.Parent = DropdownHolder
+				Item.Text = v or "Item"
 				Item.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 				Item.Size = UDim2.new(0, 396, 0, 34)
 				Item.Font = Enum.Font.JosefinSans
