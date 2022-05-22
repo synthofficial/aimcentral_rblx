@@ -1,16 +1,12 @@
 local WindowTable = {}
 
-function WindowTable:CreateWindow()
+function WindowTable:Create()
 	
 	-- Gui to Lua
 	-- Version: 3.2
 
 	-- Instances:
-	
-	if game.CoreGui:FindFirstChild("[yourScreenGuiName") then
-		game.CoreGui:FindFirstChild("[yourScreenGuiName"):Destroy()
-	end
-	
+
 	local Main = Instance.new("ScreenGui")
 	local MainWindow = Instance.new("Frame")
 	local mainCorner = Instance.new("UICorner")
@@ -76,8 +72,8 @@ function WindowTable:CreateWindow()
 	
 	local TabHandler = {}
 	
-	function TabHandler:CreateTab(tabName)
-		tabName = tabName
+	function TabHandler:Tab(tabName)
+		tabName = tabName or "New Tab"
 		
 		local tabButton = Instance.new("TextButton") -- our tab
 		local UICorner = Instance.new("UICorner")-- our tab corner
@@ -93,7 +89,7 @@ function WindowTable:CreateWindow()
 		tabButton.Position = UDim2.new(-0.0192307699, 0, 0.0152221676, 0)
 		tabButton.Size = UDim2.new(0.1053719, 109, 0.00999999978, 32)
 		tabButton.Font = Enum.Font.JosefinSans
-		tabButton.Text = tabName
+		tabButton.Text = "Example"
 		tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		tabButton.TextSize = 14.000
 		
@@ -113,7 +109,6 @@ function WindowTable:CreateWindow()
 		
 		
 	end
-	
 	return TabHandler
 	
 end
