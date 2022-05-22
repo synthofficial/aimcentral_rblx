@@ -255,7 +255,7 @@ function WindowTable:Create()
 			sliderFill.Name = "sliderFill"
 			sliderFill.Parent = sliderInfo
 			sliderFill.BackgroundColor3 = Color3.fromRGB(255, 109, 83)
-			sliderFill.Position = UDim2.new(-0.001, 0, 1, 0)
+			sliderFill.Position = UDim2.new(0, 0, 1, 0)
 			sliderFill.Size = UDim2.new(0, 0, 0, 6)
 
 			sliderFillCorner.Name = "sliderFillCorner"
@@ -283,14 +283,14 @@ function WindowTable:Create()
 				pcall(function()
 					callback(Value)
 				end)
-				sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 9)
+				sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 6)
 				moveconnection = mouse.Move:Connect(function()
 					sliderValue.Text = Value
 					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 392) * sliderFill.AbsoluteSize.X) + tonumber(minvalue))
 					pcall(function()
 						callback(Value)
 					end)
-					sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 9)
+					sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 6)
 				end)
 				releaseconnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -298,7 +298,7 @@ function WindowTable:Create()
 						pcall(function()
 							callback(Value)
 						end)
-						sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 9)
+						sliderFill.Size = UDim2.new(0, math.clamp(mouse.X - sliderFill.AbsolutePosition.X, 0, 392), 0, 6)
 						moveconnection:Disconnect()
 						releaseconnection:Disconnect()
 					end
