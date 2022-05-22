@@ -415,6 +415,7 @@ function WindowTable:Create()
 				if dropopened then
 					
 					DropdownHolder.Visible = true
+					print("holder is visible")
 					
 				else
 					DropdownHolder.Visible = false
