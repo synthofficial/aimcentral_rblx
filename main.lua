@@ -1,6 +1,6 @@
 local WindowTable = {}
 
-function WindowTable:Create()
+function WindowTable:CreateWindow()
 	
 	-- Gui to Lua
 	-- Version: 3.2
@@ -72,7 +72,7 @@ function WindowTable:Create()
 	
 	local TabHandler = {}
 	
-	function TabHandler:Tab(tabName)
+	function TabHandler:CreateTab(tabName)
 		tabName = tabName or "New Tab"
 		
 		local tabButton = Instance.new("TextButton") -- our tab
