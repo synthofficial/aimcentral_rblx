@@ -387,6 +387,7 @@ function WindowTable:Create()
 			DropdownButton.MouseButton1Click:Connect(function()
 				
 				if toggled == true then
+					toggled = nil
 					DropdownHolder.Visible = true
 				else
 					DropdownHolder.Visible = false
