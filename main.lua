@@ -95,6 +95,12 @@ function WindowTable:Create(hubname)
 		local TabButtonCorner = Instance.new("UICorner")
 		local TabButtonName = Instance.new("TextLabel")
 		local TabButtonTrigger = Instance.new("TextButton")
+		local elementsPadding = Instance.new("UIPadding")
+
+		elementsPadding.Name = "elementsPadding"
+		elementsPadding.Parent = Page
+		elementsPadding.PaddingRight = UDim.new(0, 5)
+		elementsPadding.PaddingTop = UDim.new(0, 5)
 		
 		TabHolder.Name = "TabHolder"
 		TabHolder.Parent = LeftFrame
