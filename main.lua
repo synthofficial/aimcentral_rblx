@@ -227,7 +227,11 @@ function WindowTable:Create(hubname)
 			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SectionName.TextSize = 14.000
 			
+			Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
+			
 		end
+		
+		return SectionHandler
 		
 	end
 	
