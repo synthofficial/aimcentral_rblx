@@ -189,9 +189,14 @@ function WindowTable:Create(hubname)
 			}):Play()
 		end)
 		
+		TabHolder.CanvasSize = UDim2.new(0, 0, 0, TabHolderList.AbsoluteContentSize.Y)
+		
+		
 		local PageItems = {}
 		
 		function PageItems:Section(sectionname)
+			
+			sectionname = sectionname
 			
 			local Section = Instance.new("Frame")
 			local SectionCorner = Instance.new("UICorner")
@@ -224,7 +229,7 @@ function WindowTable:Create(hubname)
 			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SectionName.TextSize = 14.000
 			
-			print("section made")
+			Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
 			
 		end
 		
