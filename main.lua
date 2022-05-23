@@ -2,10 +2,8 @@ local WindowTable = {}
 
 local CoreGui = game:GetService("CoreGui")
 
-function WindowTable:Create(hubName)
+function WindowTable:Create(hubname)
 
-	hubName = hubName or "didnt work"
-	
 	local AimCentralUI = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
 	local Pages = Instance.new("Folder")
@@ -20,7 +18,7 @@ function WindowTable:Create(hubName)
 
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.CoreGui
+	AimCentralUI.Parent = CoreGui
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
@@ -56,7 +54,7 @@ function WindowTable:Create(hubName)
 	HubName.BorderSizePixel = 0
 	HubName.Size = UDim2.new(0, 138, 0, 35)
 	HubName.Font = Enum.Font.JosefinSans
-	HubName.Text = hubName
+	HubName.Text = hubname
 	HubName.TextColor3 = Color3.fromRGB(255, 255, 255)
 	HubName.TextSize = 14.000
 
@@ -82,11 +80,11 @@ function WindowTable:Create(hubName)
 	
 	local TabHandler = {}
 	
-	function TabHandler:Tab(tabName)
+	function TabHandler:Tab(tabname)
 		
-		tabName = tabName
+		tabname = tabname
 		
-		print("tabname is ", tabName)
+		print("tabname is ", tabname)
 		
 		local Page = Instance.new("ScrollingFrame")
 		local PageList = Instance.new("UIListLayout")
@@ -130,7 +128,7 @@ function WindowTable:Create(hubName)
 		TabButtonName.BackgroundTransparency = 1.000
 		TabButtonName.Size = UDim2.new(0, 120, 0, 28)
 		TabButtonName.Font = Enum.Font.JosefinSans
-		TabButtonName.Text = tabName
+		TabButtonName.Text = tabname
 		TabButtonName.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButtonName.TextSize = 14.000
 
