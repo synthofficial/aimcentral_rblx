@@ -14,7 +14,8 @@ function WindowTable:Create(hubname)
 	local HubName = Instance.new("TextLabel")
 	local GameName = Instance.new("TextLabel")
 	local LeftDiv = Instance.new("Frame")
-
+	local Button = Instance.new("TextButton")
+	local UICorner = Instance.new("UICorner")
 
 
 	AimCentralUI.Name = "AimCentralUI"
@@ -83,8 +84,6 @@ function WindowTable:Create(hubname)
 	function TabHandler:Tab(tabname)
 		
 		tabname = tabname
-		
-		print("tabname is ", tabname)
 		
 		local Page = Instance.new("ScrollingFrame")
 		local PageList = Instance.new("UIListLayout")
@@ -190,6 +189,45 @@ function WindowTable:Create(hubname)
 				BackgroundColor3 = Color3.fromRGB(255, 109, 83) -- We animate other Tab Buttons and making the current one seem Checked
 			}):Play()
 		end)
+		
+		local SectionHandler = {}
+		
+		function SectionHandler:Section(sectionname)
+			
+			sectionname = sectionname or "Section"
+			
+			local Section = Instance.new("Frame")
+			local SectionCorner = Instance.new("UICorner")
+			local SectionItemList = Instance.new("UIListLayout")
+			local SectionName = Instance.new("TextLabel")
+			
+			Section.Name = "Section"
+			Section.Parent = Page
+			Section.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+			Section.Position = UDim2.new(0.0301724132, 0, 0.00135135138, 0)
+			Section.Size = UDim2.new(0, 458, 0, 551)
+
+			SectionCorner.CornerRadius = UDim.new(0, 5)
+			SectionCorner.Name = "SectionCorner"
+			SectionCorner.Parent = Section
+
+			SectionItemList.Name = "SectionItemList"
+			SectionItemList.Parent = Section
+			SectionItemList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+			SectionItemList.SortOrder = Enum.SortOrder.LayoutOrder
+			SectionItemList.Padding = UDim.new(0, 2)
+
+			SectionName.Name = "SectionName"
+			SectionName.Parent = Section
+			SectionName.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+			SectionName.BorderSizePixel = 0
+			SectionName.Size = UDim2.new(0, 456, 0, 50)
+			SectionName.Font = Enum.Font.JosefinSans
+			SectionName.Text = sectionname
+			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			SectionName.TextSize = 14.000
+			
+		end
 		
 	end
 	
