@@ -189,17 +189,15 @@ function WindowTable:Create(hubname)
 			}):Play()
 		end)
 		
-		local SectionHandler = {}
-
-		function SectionHandler:Section(sectionname)
-
-			sectionname = sectionname or "Section"
-
+		local PageItems = {}
+		
+		function PageItems:Section(sectionname)
+			
 			local Section = Instance.new("Frame")
 			local SectionCorner = Instance.new("UICorner")
 			local SectionItemList = Instance.new("UIListLayout")
 			local SectionName = Instance.new("TextLabel")
-
+			
 			Section.Name = "Section"
 			Section.Parent = Page
 			Section.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
@@ -222,15 +220,15 @@ function WindowTable:Create(hubname)
 			SectionName.BorderSizePixel = 0
 			SectionName.Size = UDim2.new(0, 456, 0, 50)
 			SectionName.Font = Enum.Font.JosefinSans
-			SectionName.Text = sectionname
+			SectionName.Text = "Section"
 			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SectionName.TextSize = 14.000
-
-			Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
-
+			
+			Page.CanvasSize = UDim2.new(0,0,0,PageList.AbsoluteContentSize.Y)
+			
 		end
 		
-		return SectionHandler
+		return PageItems
 		
 	end
 		
