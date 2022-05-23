@@ -170,25 +170,6 @@ function WindowTable:Create(hubname)
 		SectionItemList.SortOrder = Enum.SortOrder.LayoutOrder
 		SectionItemList.Padding = UDim.new(0, 2)
 		
-		TabButtonTrigger.MouseButton1Click:Connect(function()
-			for i,v in next, Pages:GetChildren() do -- We get all the pages that we added
-				v.Visible = false   -- then we make them invisible 
-			end 
-			Section.Visible = true  -- We make current page visible but not others
-
-			--Animations Below  -- Optional
-			for i,v in next, Pages:GetChildren() do   -- We get all the elements inside the frame
-				if v:IsA("TextButton") then -- We can't animate UIListLayout, so we check if its a TextButton
-					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(115, 49, 37) -- We animate other Tab Buttons and making the current one seem Checked
-					}):Play()
-				end
-			end
-			game.TweenService:Create(TabButtonTrigger, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Color3.fromRGB(255, 109, 83) -- We animate other Tab Buttons and making the current one seem Checked
-			}):Play()
-		end)
-		
 		local PageItems = {}
 		
 		function PageItems:Section(sectionname)
