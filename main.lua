@@ -1,5 +1,7 @@
 local WindowTable = {}
 
+local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
+
 function WindowTable:Create()
 	
 	-- Gui to Lua
@@ -315,130 +317,115 @@ function WindowTable:Create()
 					end
 				end)
 			end)
-		end
-		
-		function ElementHandler:Dropdown(dropdownname, list, callback)
 			
-			local list = list or {}
-			local callback = callback or function() end
-			local framesize = 0
-			local itemcount = 0
-			
-			local DropdownButton = Instance.new("TextButton")
-			local DropdownCorner = Instance.new("UICorner")
-			local DropdownArrow = Instance.new("ImageLabel")
-			local DropdownHolder = Instance.new("ScrollingFrame")
-			local DropdownLayout = Instance.new("UIListLayout")
-			local DropdownValue = Instance.new("TextButton")
-			local DropdownValueCorner = Instance.new("UICorner")
-			local DropdownPadding = Instance.new("UIPadding")
-			
-			DropdownButton.Name = "DropdownButton"
-			DropdownButton.Parent = newPage
-			DropdownButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-			DropdownButton.Position = UDim2.new(0.251861036, 0, -0.0233644862, 5)
-			DropdownButton.Size = UDim2.new(0, 396, 0, 34)
-			DropdownButton.Font = Enum.Font.JosefinSans
-			DropdownButton.Text = "Dropdown"
-			DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-			DropdownButton.TextSize = 14.000
-
-			DropdownCorner.Name = "DropdownCorner"
-			DropdownCorner.Parent = DropdownButton
-
-			DropdownArrow.Name = "DropdownArrow"
-			DropdownArrow.Parent = DropdownButton
-			DropdownArrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			DropdownArrow.BackgroundTransparency = 1.000
-			DropdownArrow.Position = UDim2.new(0.926767707, 0, 0.235294119, 0)
-			DropdownArrow.Size = UDim2.new(0, 21, 0, 18)
-			DropdownArrow.Image = "rbxassetid://8577156451"
-
-			DropdownHolder.Name = "DropdownHolder"
-			DropdownHolder.Parent = DropdownButton
-			DropdownHolder.Active = true
-			DropdownHolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-			DropdownHolder.Position = UDim2.new(0, 0, 1.07647073, 0)
-			DropdownHolder.Size = UDim2.new(0, 396, 0, 110)
-			DropdownHolder.ZIndex = 2
-
-			DropdownLayout.Name = "DropdownLayout"
-			DropdownLayout.Parent = DropdownHolder
-			DropdownLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			DropdownLayout.Padding = UDim.new(0, 3)
-
-			DropdownValue.Name = "DropdownValue"
-			DropdownValue.Parent = DropdownHolder
-			DropdownValue.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-			DropdownValue.Size = UDim2.new(0, 396, 0, 34)
-			DropdownValue.Font = Enum.Font.JosefinSans
-			DropdownValue.TextColor3 = Color3.fromRGB(255, 255, 255)
-			DropdownValue.TextSize = 14.000
-
-			DropdownValueCorner.Name = "DropdownValueCorner"
-			DropdownValueCorner.Parent = DropdownValue
-
-			DropdownPadding.Name = "DropdownPadding"
-			DropdownPadding.Parent = DropdownHolder
-			DropdownPadding.PaddingTop = UDim.new(0, 5)
-			
-			local toggled = false
-			
-			DropdownButton.MouseButton1Click:Connect(function()
+			function ElementHandler:Dropdown(dropdownname, list, callback)
 				
-				if toggled == true then
-					toggled = nil
-					print("on")
-					DropdownHolder.Visible = true
-				else
-					print("off")
-					DropdownHolder.Visible = false
-				end
+				dropdownname = dropdownname or "Dropdown"
+				list = list or {}
+				callback = callback or function() end
 				
-			end)
-			
-			for i, v in next, list do
+				local Dropdown = Instance.new("Frame")
+				local FireButton = Instance.new("TextButton")
+				local dropdownCorner = Instance.new("UICorner")
+				local Dropname = Instance.new("TextLabel")
+				local valueButton = Instance.new("TextButton")
+				local valueCorner = Instance.new("UICorner")
+				local frameCorner = Instance.new("UICorner")
 				
-				itemcount = itemcount + 1
-				if itemcount <= 4 then
-					framesize = framesize + 40 + 2
-				end
+				Dropdown.Name = "Dropdown"
+				Dropdown.Parent = newPage
+				Dropdown.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+				Dropdown.BorderColor3 = Color3.fromRGB(30, 30, 30)
+				Dropdown.Position = UDim2.new(0.00868486334, 0, 0, 0)
+				Dropdown.Size = UDim2.new(0, 396, 0, 36)
+
+				FireButton.Name = "FireButton"
+				FireButton.Parent = Dropdown
+				FireButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+				FireButton.Size = UDim2.new(0, 396, 0, 34)
+				FireButton.Font = Enum.Font.SourceSans
+				FireButton.Text = ""
+				FireButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+				FireButton.TextSize = 14.000
+
+				dropdownCorner.Name = "dropdownCorner"
+				dropdownCorner.Parent = FireButton
+
+				Dropname.Name = "Dropname"
+				Dropname.Parent = Dropdown
+				Dropname.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Dropname.BackgroundTransparency = 1.000
+				Dropname.Size = UDim2.new(0, 396, 0, 34)
+				Dropname.Font = Enum.Font.JosefinSans
+				Dropname.Text = "Dropdown"
+				Dropname.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Dropname.TextSize = 14.000
+
+				valueButton.Name = "valueButton"
+				valueButton.Parent = Dropname
+				valueButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+				valueButton.Position = UDim2.new(0, 0, 1.17647064, 0)
+				valueButton.Size = UDim2.new(0, 396, 0, 34)
+				valueButton.Visible = false
+				valueButton.Font = Enum.Font.JosefinSans
+				valueButton.Text = "Value"
+				valueButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+				valueButton.TextSize = 14.000
+
+				valueCorner.Name = "valueCorner"
+				valueCorner.Parent = valueButton
+
+				frameCorner.Name = "frameCorner"
+				frameCorner.Parent = Dropdown
 				
-				local Item = Instance.new("TextButton")
-				local ItemCorner = Instance.new("UICorner")
-				local ItemStroke = Instance.new("UIStroke")
-
-				Item.Name = "Item"
-				Item.Parent = DropdownHolder
-				Item.BackgroundColor3 = Color3.fromRGB(24, 27, 33)
-				Item.BorderSizePixel = 0
-				Item.Position = UDim2.new(0.0280000009, 0, 0.419714272, 0)
-				Item.Size = UDim2.new(0, 334, 0, 40)
-				Item.AutoButtonColor = false
-				Item.Font = Enum.Font.GothamSemibold
-				Item.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Item.TextSize = 14.000
-				Item.TextTransparency = 0.200
-				Item.Text = v or "Item"
-
-				ItemCorner.CornerRadius = UDim.new(0, 4)
-				ItemCorner.Name = "ItemCorner"
-				ItemCorner.Parent = Item
-
-				ItemStroke.Name = "ItemStroke"
-				ItemStroke.Parent = Item
-				ItemStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-				ItemStroke.Color = Color3.fromRGB(46, 46, 47)
-				ItemStroke.Thickness = 1
-
-				Item.MouseButton1Click:Connect(function()
-					callback(v)
+				local toggled = false
+				local dropdowntweenspeed = 0.2
+				
+				local framesize = 0
+				local itemcount = 0
+				
+				FireButton.MouseButton1Click:Connect(function()
+					
+					if toggled == true then
+						toggled = nil
+						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 396, 0, 114)})
+						toggled = false
+						
+					elseif toggled == false then
+						toggled = nil
+						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 396, 0, 36)})
+						toggled = true
+					end
+					
 				end)
-
+				
+				for i,v in next, list do
+					
+					itemcount = itemcount + 1
+					if itemcount <= 4 then
+						framesize = framesize + 40 + 2
+					end
+					
+					Dropdown.Size = UDim2.new(0, 396, 0, framesize + 2)
+					
+					local Item = Instance.new("TextButton")
+					Item.Name = "Item"
+					Item.Parent = Dropname
+					valueButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+					valueButton.Position = UDim2.new(0, 0, 1.17647064, 0)
+					valueButton.Size = UDim2.new(0, 396, 0, 34)
+					valueButton.Visible = false
+					valueButton.Font = Enum.Font.JosefinSans
+					valueButton.Text = "Value"
+					valueButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+					valueButton.TextSize = 14.000
+					
+				end
+				
+				
 			end
 			
-		end
-			
+		end			
 		
 		return ElementHandler
 	end
