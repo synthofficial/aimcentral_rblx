@@ -226,6 +226,8 @@ function WindowTable:Create(hubname)
 			
 			Page.CanvasSize = UDim2.new(0,0,0,PageList.AbsoluteContentSize.Y)
 			
+			print("section made")
+			
 		end
 		
 		return PageItems
