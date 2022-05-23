@@ -1,6 +1,6 @@
 local WindowTable = {}
 
-function WindowTable:Create()
+function WindowTable:Create(hubName)
 
 	local AimCentralUI = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
@@ -16,7 +16,7 @@ function WindowTable:Create()
 
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.CoreGui
+	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
@@ -52,7 +52,7 @@ function WindowTable:Create()
 	HubName.BorderSizePixel = 0
 	HubName.Size = UDim2.new(0, 138, 0, 35)
 	HubName.Font = Enum.Font.JosefinSans
-	HubName.Text = "AimCentral"
+	HubName.Text = hubName
 	HubName.TextColor3 = Color3.fromRGB(255, 255, 255)
 	HubName.TextSize = 14.000
 
@@ -81,6 +81,8 @@ function WindowTable:Create()
 	function TabHandler:Tab(tabName)
 		
 		tabName = tabName
+		
+		print("tabname is ", tabName)
 		
 		local Page = Instance.new("ScrollingFrame")
 		local PageList = Instance.new("UIListLayout")
