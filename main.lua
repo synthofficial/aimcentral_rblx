@@ -95,12 +95,6 @@ function WindowTable:Create(hubname)
 		local TabButtonCorner = Instance.new("UICorner")
 		local TabButtonName = Instance.new("TextLabel")
 		local TabButtonTrigger = Instance.new("TextButton")
-		local elementsPadding = Instance.new("UIPadding")
-
-		elementsPadding.Name = "elementsPadding"
-		elementsPadding.Parent = TabHolder
-		elementsPadding.PaddingRight = UDim.new(0, 5)
-		elementsPadding.PaddingTop = UDim.new(0, 5)
 		
 		TabHolder.Name = "TabHolder"
 		TabHolder.Parent = LeftFrame
@@ -160,6 +154,7 @@ function WindowTable:Create(hubname)
 		PageList.Name = "PageList"
 		PageList.Parent = Page
 		PageList.SortOrder = Enum.SortOrder.LayoutOrder
+		PageList.Padding = UDim.new(0,3)
 
 		Section.Name = "Section"
 		Section.Parent = Page
