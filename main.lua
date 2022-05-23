@@ -19,7 +19,6 @@ function WindowTable:Create()
 	local allPages = Instance.new("ScrollingFrame")
 	local mainCorner_2 = Instance.new("UICorner")
 	local pagesFolder = Instance.new("Folder")
-
 	--Properties:
 
 	Main.Name = "Main"
@@ -318,110 +317,203 @@ function WindowTable:Create()
 				end)
 			end)
 			
+			local a = {}
+			
 			function ElementHandler:Dropdown(dropdownname, list, callback)
 				
-				dropdownname = dropdownname or "Dropdown"
-				list = list or {}
 				callback = callback or function() end
+				list = list or {}
+				dropdownname = dropdownname or ""
+				local framesize = 0;
+				local itemcount = 0;
+				
+				local toggled = false;
 				
 				local Dropdown = Instance.new("Frame")
-				local FireButton = Instance.new("TextButton")
-				local dropdownCorner = Instance.new("UICorner")
-				local Dropname = Instance.new("TextLabel")
-				local valueButton = Instance.new("TextButton")
-				local valueCorner = Instance.new("UICorner")
-				local frameCorner = Instance.new("UICorner")
+				local DropdownCorner = Instance.new("UICorner")
+				local DropdownOutList = Instance.new("UIListLayout")
+				local DropdownInfoHolder = Instance.new("Frame")
+				local TextLabel = Instance.new("TextLabel")
+				local ArrowUp = Instance.new("ImageButton")
+				local ArrowDown = Instance.new("ImageButton")
+				local DropdownItemHolder = Instance.new("ScrollingFrame")
+				local DropdownItemHolderList = Instance.new("UIListLayout")
+				local DropdownItemHolderPadding = Instance.new("UIPadding")
+				local Item = Instance.new("TextButton")
+				local ItemCorner = Instance.new("UICorner")
 				
 				Dropdown.Name = "Dropdown"
 				Dropdown.Parent = newPage
-				Dropdown.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-				Dropdown.BorderColor3 = Color3.fromRGB(30, 30, 30)
-				Dropdown.Position = UDim2.new(0.00868486334, 0, 0, 0)
-				Dropdown.Size = UDim2.new(0, 396, 0, 36)
+				Dropdown.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				Dropdown.Position = UDim2.new(-0.0012406949, 0, -0.00814332347, 0)
+				Dropdown.Size = UDim2.new(0, 396, 0, 79)
 
-				FireButton.Name = "FireButton"
-				FireButton.Parent = Dropdown
-				FireButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-				FireButton.Size = UDim2.new(0, 396, 0, 34)
-				FireButton.Font = Enum.Font.SourceSans
-				FireButton.Text = ""
-				FireButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-				FireButton.TextSize = 14.000
+				DropdownCorner.CornerRadius = UDim.new(0, 5)
+				DropdownCorner.Name = "DropdownCorner"
+				DropdownCorner.Parent = Dropdown
 
-				dropdownCorner.Name = "dropdownCorner"
-				dropdownCorner.Parent = FireButton
+				DropdownOutList.Name = "DropdownOutList"
+				DropdownOutList.Parent = Dropdown
+				DropdownOutList.SortOrder = Enum.SortOrder.LayoutOrder
 
-				Dropname.Name = "Dropname"
-				Dropname.Parent = Dropdown
-				Dropname.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Dropname.BackgroundTransparency = 1.000
-				Dropname.Size = UDim2.new(0, 396, 0, 34)
-				Dropname.Font = Enum.Font.JosefinSans
-				Dropname.Text = "Dropdown"
-				Dropname.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Dropname.TextSize = 14.000
+				DropdownInfoHolder.Name = "DropdownInfoHolder"
+				DropdownInfoHolder.Parent = Dropdown
+				DropdownInfoHolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				DropdownInfoHolder.BackgroundTransparency = 1.000
+				DropdownInfoHolder.BorderSizePixel = 0
+				DropdownInfoHolder.Size = UDim2.new(0, 396, 0, 35)
 
-				valueButton.Name = "valueButton"
-				valueButton.Parent = Dropname
-				valueButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-				valueButton.Position = UDim2.new(0, 0, 1.17647064, 0)
-				valueButton.Size = UDim2.new(0, 396, 0, 34)
-				valueButton.Visible = false
-				valueButton.Font = Enum.Font.JosefinSans
-				valueButton.Text = "Value"
-				valueButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-				valueButton.TextSize = 14.000
+				TextLabel.Parent = DropdownInfoHolder
+				TextLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				TextLabel.BorderSizePixel = 0
+				TextLabel.Size = UDim2.new(0, 396, 0, 35)
+				TextLabel.Font = Enum.Font.JosefinSans
+				TextLabel.Text = "Dropdown"
+				TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TextLabel.TextSize = 14.000
 
-				valueCorner.Name = "valueCorner"
-				valueCorner.Parent = valueButton
+				ArrowUp.Name = "ArrowUp"
+				ArrowUp.Parent = DropdownInfoHolder
+				ArrowUp.BackgroundTransparency = 1.000
+				ArrowUp.Position = UDim2.new(0.904518247, 0, 0.160150379, 0)
+				ArrowUp.Size = UDim2.new(0, 25, 0, 25)
+				ArrowUp.ZIndex = 2
+				ArrowUp.Image = "rbxassetid://3926305904"
+				ArrowUp.ImageRectOffset = Vector2.new(564, 284)
+				ArrowUp.ImageRectSize = Vector2.new(36, 36)
 
-				frameCorner.Name = "frameCorner"
-				frameCorner.Parent = Dropdown
+				ArrowDown.Name = "ArrowDown"
+				ArrowDown.Parent = DropdownInfoHolder
+				ArrowDown.BackgroundTransparency = 1.000
+				ArrowDown.Position = UDim2.new(0.904518247, 0, 0.160150379, 0)
+				ArrowDown.Size = UDim2.new(0, 25, 0, 25)
+				ArrowDown.ZIndex = 2
+				ArrowDown.Image = "rbxassetid://3926305904"
+				ArrowDown.ImageRectOffset = Vector2.new(44, 404)
+				ArrowDown.ImageRectSize = Vector2.new(36, 36)
+				ArrowDown.ImageTransparency = 1.000
+
+				DropdownItemHolder.Name = "DropdownItemHolder"
+				DropdownItemHolder.Parent = Dropdown
+				DropdownItemHolder.Active = true
+				DropdownItemHolder.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				DropdownItemHolder.BorderSizePixel = 0
+				DropdownItemHolder.Size = UDim2.new(0, 396, 0, 79)
+				DropdownItemHolder.ScrollBarThickness = 4
+
+				DropdownItemHolderList.Name = "DropdownItemHolderList"
+				DropdownItemHolderList.Parent = DropdownItemHolder
+				DropdownItemHolderList.SortOrder = Enum.SortOrder.LayoutOrder
+				DropdownItemHolderList.Padding = UDim.new(0, 2)
+
+				DropdownItemHolderPadding.Name = "DropdownItemHolderPadding"
+				DropdownItemHolderPadding.Parent = DropdownItemHolder
+				DropdownItemHolderPadding.PaddingBottom = UDim.new(0, 1)
+				DropdownItemHolderPadding.PaddingTop = UDim.new(0, 1)
+
+				Item.Name = "Item"
+				Item.Parent = DropdownItemHolder
+				Item.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+				Item.BorderSizePixel = 0
+				Item.Size = UDim2.new(0, 396, 0, 35)
+				Item.Font = Enum.Font.JosefinSans
+				Item.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Item.TextSize = 14.000
+
+				ItemCorner.Name = "ItemCorner"
+				ItemCorner.Parent = Item
 				
-				local toggled = false
 				local dropdowntweenspeed = 0.2
-				
-				local framesize = 0
-				local itemcount = 0
-				
-				FireButton.MouseButton1Click:Connect(function()
-					
+
+				ArrowDown.MouseButton1Click:Connect(function()
 					if toggled == true then
 						toggled = nil
-						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 396, 0, 114)})
+						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 356, 0, 38)})
+						Utility:Tween(ArrowDown, dropdowntweenspeed, {ImageTransparency = 1})
+						Utility:Tween(ArrowUp, dropdowntweenspeed, {ImageTransparency = 0})
+						Utility:Tween(newPage, dropdowntweenspeed, {Size = newPage.Size - UDim2.new(0, 0, 0, (framesize + 7))})
 						toggled = false
-						
+						for i = 1, dropdowntweenspeed * 1000000 do
+							newPage.CanvasSize = UDim2.new(0, 0, 0, elementsListing.AbsoluteContentSize.Y)
+							wait(0.000001)
+						end
 					elseif toggled == false then
 						toggled = nil
-						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 396, 0, 36)})
+						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 356, 0, (38 + framesize + 7))})
+						Utility:Tween(ArrowDown, dropdowntweenspeed, {ImageTransparency = 0})
+						Utility:Tween(ArrowUp, dropdowntweenspeed, {ImageTransparency = 1})
+						Utility:Tween(newPage, dropdowntweenspeed, {Size = elementsListing.Size + UDim2.new(0, 0, 0, (framesize + 7))})
 						toggled = true
+						for i = 1, dropdowntweenspeed * 1000000 do
+							newPage.CanvasSize = UDim2.new(0, 0, 0, elementsListing.AbsoluteContentSize.Y)
+							wait(0.000001)
+						end
 					end
-					
 				end)
 				
-				for i,v in next, list do
-					
+				for i, v in next, list do
+
 					itemcount = itemcount + 1
 					if itemcount <= 4 then
 						framesize = framesize + 40 + 2
 					end
-					
-					Dropdown.Size = UDim2.new(0, 396, 0, framesize + 2)
-					
+
+					DropdownItemHolder.Size = UDim2.new(0, 340, 0, framesize + 2)
+
 					local Item = Instance.new("TextButton")
+					local ItemCorner = Instance.new("UICorner")
+					local ItemStroke = Instance.new("UIStroke")
+
 					Item.Name = "Item"
-					Item.Parent = Dropname
-					valueButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-					valueButton.Position = UDim2.new(0, 0, 1.17647064, 0)
-					valueButton.Size = UDim2.new(0, 396, 0, 34)
-					valueButton.Visible = false
-					valueButton.Font = Enum.Font.JosefinSans
-					valueButton.Text = "Value"
-					valueButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-					valueButton.TextSize = 14.000
-					
+					Item.Parent = DropdownItemHolder
+					Item.BackgroundColor3 = Color3.fromRGB(24, 27, 33)
+					Item.BorderSizePixel = 0
+					Item.Position = UDim2.new(0.0280000009, 0, 0.419714272, 0)
+					Item.Size = UDim2.new(0, 334, 0, 40)
+					Item.AutoButtonColor = false
+					Item.Font = Enum.Font.GothamSemibold
+					Item.TextColor3 = Color3.fromRGB(255, 255, 255)
+					Item.TextSize = 14.000
+					Item.TextTransparency = 0.200
+					Item.Text = v or "Item"
+
+					ItemCorner.CornerRadius = UDim.new(0, 4)
+					ItemCorner.Name = "ItemCorner"
+					ItemCorner.Parent = Item
+
+					ItemStroke.Name = "ItemStroke"
+					ItemStroke.Parent = Item
+					ItemStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+					ItemStroke.Color = Color3.fromRGB(46, 46, 47)
+					ItemStroke.Thickness = 1
+
+					DropdownItemHolder.CanvasSize = UDim2.new(0, 0, 0, DropdownItemHolderList.AbsoluteContentSize.Y + 2)
+
+					Item.MouseEnter:Connect(function()
+						Utility:Tween(ItemStroke, 0.1, {Color = Color3.fromRGB(40,40,40)})
+					end)
+					Item.MouseLeave:Connect(function()
+						Utility:Tween(ItemStroke, 0.1, {Color = Color3.fromRGB(46, 46, 47)})
+					end)
+					Item.MouseButton1Click:Connect(function()
+						toggled = nil
+						Utility:Tween(Dropdown, dropdowntweenspeed, {Size = UDim2.new(0, 356, 0, 38)})
+						Utility:Tween(ArrowDown, dropdowntweenspeed, {ImageTransparency = 1})
+						Utility:Tween(ArrowUp, dropdowntweenspeed, {ImageTransparency = 0})
+						Utility:Tween(newPage, dropdowntweenspeed, {Size = newPage.Size - UDim2.new(0, 0, 0, (framesize + 7))})
+						toggled = false
+						TextLabel.Text = dropdownname.." - "..v
+						for i = 1, dropdowntweenspeed * 1000000 do
+							newPage.CanvasSize = UDim2.new(0, 0, 0, newPage.AbsoluteContentSize.Y)
+							wait(0.000001)
+						end
+					end)
+					Item.MouseButton1Click:Connect(function()
+						callback(v)
+					end)
+
 				end
-				
+
 				
 			end
 			
