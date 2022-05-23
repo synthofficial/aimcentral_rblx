@@ -76,8 +76,7 @@ function WindowTable:Create(hubname)
 	LeftDiv.BorderSizePixel = 0
 	LeftDiv.Position = UDim2.new(0, 0, 0.086756736, 0)
 	LeftDiv.Size = UDim2.new(0, 137, 0, 1)
-
-
+	
 	
 	local TabHandler = {}
 	
@@ -191,16 +190,16 @@ function WindowTable:Create(hubname)
 		end)
 		
 		local SectionHandler = {}
-		
+
 		function SectionHandler:Section(sectionname)
-			
+
 			sectionname = sectionname or "Section"
-			
+
 			local Section = Instance.new("Frame")
 			local SectionCorner = Instance.new("UICorner")
 			local SectionItemList = Instance.new("UIListLayout")
 			local SectionName = Instance.new("TextLabel")
-			
+
 			Section.Name = "Section"
 			Section.Parent = Page
 			Section.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
@@ -226,15 +225,15 @@ function WindowTable:Create(hubname)
 			SectionName.Text = sectionname
 			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SectionName.TextSize = 14.000
-			
+
 			Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
-			
+
 		end
 		
 		return SectionHandler
 		
 	end
-	
+		
 	return TabHandler
 	
 end
