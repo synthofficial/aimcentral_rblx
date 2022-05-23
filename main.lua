@@ -98,7 +98,7 @@ function WindowTable:Create(hubname)
 		local elementsPadding = Instance.new("UIPadding")
 
 		elementsPadding.Name = "elementsPadding"
-		elementsPadding.Parent = Page
+		elementsPadding.Parent = TabHolder
 		elementsPadding.PaddingRight = UDim.new(0, 5)
 		elementsPadding.PaddingTop = UDim.new(0, 5)
 		
