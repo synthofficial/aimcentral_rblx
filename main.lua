@@ -119,12 +119,12 @@ function WindowTable:Create()
 		TabButtonCorner.Parent = TabButton
 
 		TabButtonName.Name = "TabButtonName"
-		TabButtonName.Parent = tabName
+		TabButtonName.Parent = TabButton
 		TabButtonName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TabButtonName.BackgroundTransparency = 1.000
 		TabButtonName.Size = UDim2.new(0, 120, 0, 28)
 		TabButtonName.Font = Enum.Font.JosefinSans
-		TabButtonName.Text = "Button"
+		TabButtonName.Text = tabName
 		TabButtonName.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButtonName.TextSize = 14.000
 
