@@ -109,13 +109,13 @@ function WindowTable:Create(hubname)
 		TabHolderList.Name = "TabHolderList"
 		TabHolderList.Parent = TabHolder
 		TabHolderList.SortOrder = Enum.SortOrder.LayoutOrder
-		TabHolderList.Padding = UDim.new(0, 3)
+		TabHolderList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		TabHolderList.Padding = UDim.new(0, 5)
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
 		TabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 		TabButton.Size = UDim2.new(0, 120, 0, 28)
-
 		TabButtonCorner.CornerRadius = UDim.new(0, 4)
 		TabButtonCorner.Name = "TabButtonCorner"
 		TabButtonCorner.Parent = TabButton
