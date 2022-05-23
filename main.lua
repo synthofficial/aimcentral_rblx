@@ -1,7 +1,11 @@
 local WindowTable = {}
 
+local CoreGui = game:GetService("CoreGui")
+
 function WindowTable:Create(hubName)
 
+	hubName = hubName or "didnt work"
+	
 	local AimCentralUI = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
 	local Pages = Instance.new("Folder")
