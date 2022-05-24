@@ -103,18 +103,19 @@ function WindowTable:Create(hubname)
 		
 		tabname = tabname
 		
-		local Page = Instance.new("ScrollingFrame")
-		local PageList = Instance.new("UIListLayout")
-
 		local TabButton = Instance.new("Frame")
 		local TabButtonCorner = Instance.new("UICorner")
 		local TabButtonName = Instance.new("TextLabel")
 		local TabButtonTrigger = Instance.new("TextButton")
+		local Page = Instance.new("ScrollingFrame")
+		local PageList = Instance.new("UIListLayout")
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
 		TabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		TabButton.BackgroundTransparency = 1
 		TabButton.Size = UDim2.new(0, 120, 0, 28)
+		
 		TabButtonCorner.CornerRadius = UDim.new(0, 4)
 		TabButtonCorner.Name = "TabButtonCorner"
 		TabButtonCorner.Parent = TabButton
@@ -128,6 +129,7 @@ function WindowTable:Create(hubname)
 		TabButtonName.Text = tabname
 		TabButtonName.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButtonName.TextSize = 14.000
+		TabButtonName.BackgroundTransparency = 0.550
 
 		TabButtonTrigger.Name = "TabButtonTrigger"
 		TabButtonTrigger.Parent = TabButton
@@ -146,12 +148,15 @@ function WindowTable:Create(hubname)
 		Page.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
 		Page.BackgroundTransparency = 1.000
 		Page.BorderSizePixel = 0
+		Page.CanvasPosition = Vector2.new(0, 260)
 		Page.Position = UDim2.new(0.237479806, 0, 0.0189189184, 0)
 		Page.Size = UDim2.new(0, 464, 0, 355)
 		Page.ScrollBarThickness = 3
+		Page.Visible = false
 
 		PageList.Name = "PageList"
 		PageList.Parent = Page
+		PageList.HorizontalAlignment = Enum.HorizontalAlignment.Left
 		PageList.SortOrder = Enum.SortOrder.LayoutOrder
 		PageList.Padding = UDim.new(0,3)
 		
