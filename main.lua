@@ -155,25 +155,6 @@ function WindowTable:Create(hubname)
 		PageList.SortOrder = Enum.SortOrder.LayoutOrder
 		PageList.Padding = UDim.new(0,3)
 		
-		local pagetweenspeed = 0.14
-
-		TabButtonTrigger.MouseButton1Click:Connect(function()
-			for i, v in pairs(TabHolder:GetChildren()) do
-				if v:IsA("Frame") then
-					Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
-					Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
-				end
-			end
-			for i, v in pairs(Pages:GetChildren()) do
-				v.Visible = false
-			end
-			Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
-			Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
-			Page.Visible = true
-		end)
-		
-		TabHolder.CanvasSize = UDim2.new(0, 0, 0, TabHolderList.AbsoluteContentSize.Y)
-		
 		
 		local PageItems = {}
 		
