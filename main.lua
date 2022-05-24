@@ -1,5 +1,7 @@
 local WindowTable = {}
 
+local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
+
 function WindowTable:Create()
 
 	local AimCentralUI = Instance.new("ScreenGui")
@@ -12,7 +14,7 @@ function WindowTable:Create()
 	local Seperator = Instance.new("Frame")
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.CoreGui
+	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
@@ -65,6 +67,8 @@ function WindowTable:Create()
 		local TabButtonCorner = Instance.new("UICorner")
 		local TabButtonName = Instance.new("TextLabel")
 		local TabButtonTrigger = Instance.new("TextButton")
+		local Page = Instance.new("ScrollingFrame")
+		local PageList = Instance.new("UIListLayout")
 
 		TabHolder.Name = "TabHolder"
 		TabHolder.Parent = LeftFrame
@@ -109,24 +113,44 @@ function WindowTable:Create()
 		TabButtonTrigger.TextColor3 = Color3.fromRGB(0, 0, 0)
 		TabButtonTrigger.TextSize = 14.000
 		
-		TabButtonTrigger.MouseButton1Click:Connect(function()
-			for i,v in next, Pages:GetChildren() do -- We get all the pages that we added
-				v.Visible = false   -- then we make them invisible 
-			end 
-			print("show page code here")
+		Page.Name = "Page"
+		Page.Parent = MainFrame
+		Page.Active = true
+		Page.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Page.BackgroundTransparency = 1.000
+		Page.BorderSizePixel = 0
+		Page.Position = UDim2.new(0.245660886, 0, 0.0154867256, 0)
+		Page.Size = UDim2.new(0, 559, 0, 439)
+		Page.ScrollBarThickness = 3
 
-			--Animations Below  -- Optional
-			for i,v in next, Pages:GetChildren() do   -- We get all the elements inside the frame
-				if v:IsA("TextButton") then -- We can't animate UIListLayout, so we check if its a TextButton
-					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(115, 49, 37) -- We animate other Tab Buttons and making the current one seem Checked
-					}):Play()
+		PageList.Name = "PageList"
+		PageList.Parent = Page
+		PageList.SortOrder = Enum.SortOrder.LayoutOrder
+		PageList.HorizontalAlignment = Enum.HorizontalAlignment.Left
+		PageList.Padding = UDim.new(0, 3)
+		
+		local pagetweenspeed = 0.14
+		
+		TabButtonTrigger.MouseButton1Click:Connect(function()
+			for i, v in pairs(TabHolder:GetChildren()) do
+				if v:IsA("Frame") then
+					Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
+					Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
 				end
 			end
-			game.TweenService:Create(TabButtonTrigger, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Color3.fromRGB(255, 109, 83) -- We animate other Tab Buttons and making the current one seem Checked
-			}):Play()
+			for i, v in pairs(Pages:GetChildren()) do
+				v.Visible = false
+			end
+			Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
+			Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+			Page.Visible = true
 		end)
+
+		Pages:FindFirstChild("Page").Visible = true
+		Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
+		Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+
+		TabHolder.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
 		
 	end
 	
