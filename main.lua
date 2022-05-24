@@ -172,6 +172,9 @@ function WindowTable:Create(hubname)
 			Page.Visible = true
 		end)
 		
+		Pages:FindFirstChild("Page").Visible = true
+		Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
+		Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
 		
 		local PageItems = {}
 		
