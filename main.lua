@@ -1,5 +1,7 @@
 local library = {}
 
+local UserInputService = game:GetService("UserInputService")
+
 function library:CreateWindow()
 
 	local AimCentralUI = Instance.new("ScreenGui")
@@ -432,11 +434,11 @@ function library:CreateWindow()
 				UserInputService.InputChanged:Connect(function(input)
 					if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
 						move(input)
-						Utility:Tween(SliderCircle, 0.2, {ImageColor3 = Color3.fromRGB(250, 128, 114)})
-						Utility:Tween(SliderIn, 0.2, {ImageColor3 = Color3.fromRGB(250, 128, 114)})
+						--Utility:Tween(SliderCircle, 0.2, {ImageColor3 = Color3.fromRGB(250, 128, 114)})
+						--Utility:Tween(SliderIn, 0.2, {ImageColor3 = Color3.fromRGB(250, 128, 114)})
 					elseif not dragging then
-						Utility:Tween(SliderCircle, 0.2, {ImageColor3 = Color3.fromRGB(255, 255, 255)})
-						Utility:Tween(SliderIn, 0.2, {ImageColor3 = Color3.fromRGB(255, 255, 255)})
+						--Utility:Tween(SliderCircle, 0.2, {ImageColor3 = Color3.fromRGB(255, 255, 255)})
+						--Utility:Tween(SliderIn, 0.2, {ImageColor3 = Color3.fromRGB(255, 255, 255)})
 					end
 				end)
 				
