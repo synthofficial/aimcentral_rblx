@@ -1,7 +1,5 @@
 local library = {}
 
-local Utility = game:GetService("HttpService"):GetAsync('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility')
-
 function library:CreateWindow()
 
 	local AimCentralUI = Instance.new("ScreenGui")
