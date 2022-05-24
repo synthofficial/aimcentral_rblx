@@ -17,7 +17,7 @@ function library:CreateWindow()
 	local TabHolderList = Instance.new("UIListLayout")
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.CoreGui
+	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
@@ -384,7 +384,7 @@ function library:CreateWindow()
 				SliderValue.Position = UDim2.new(0.904411733, 0, 0.340000004, 0)
 				SliderValue.Size = UDim2.new(0, 55, 0, 18)
 				SliderValue.Font = Enum.Font.JosefinSans
-				SliderValue.Text = startvalue
+				SliderValue.Text = "50"
 				SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
 				SliderValue.TextSize = 14.000
 
@@ -414,7 +414,7 @@ function library:CreateWindow()
 					SliderIn:TweenSize(pos1, "Out", "Sine", 0.2, true)
 					SliderCircle:TweenPosition(pos, "Out", "Sine", 0.2, true)
 					value = math.floor(((pos.X.Scale * maxvalue) / maxvalue) * (maxvalue - minvalue) + minvalue)
-					SliderValue.Text = (slidername or "Slider").." - "..tostring(value)
+					SliderName.Text = (slidername or "Slider").." - "..tostring(value)
 					callback(value)
 				end
 				
