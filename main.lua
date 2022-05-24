@@ -158,27 +158,25 @@ function WindowTable:Create(hubname)
 		local pagetweenspeed = 0.14
 
 		TabButtonTrigger.MouseButton1Click:Connect(function()
-			for i,v in next, Pages:GetChildren() do -- We get all the pages that we added
-				v.Visible = false   -- then we make them invisible 
-			end 
-			Page.Visible = true  -- We make current page visible but not others
-
-			--Animations Below  -- Optional
-			for i,v in next, Pages:GetChildren() do   -- We get all the elements inside the frame
-				if v:IsA("TextButton") then -- We can't animate UIListLayout, so we check if its a TextButton
-					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(115, 49, 37) -- We animate other Tab Buttons and making the current one seem Checked
-					}):Play()
+			for i, v in pairs(TabHolder:GetChildren()) do
+				if v:IsA("Frame") then
+					Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
+					Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
 				end
 			end
-			game.TweenService:Create(TabButton, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-				BackgroundColor3 = Color3.fromRGB(255, 109, 83) -- We animate other Tab Buttons and making the current one seem Checked
-			}):Play()
+			for i, v in pairs(Pages:GetChildren()) do
+				v.Visible = false
+			end
+			Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
+			Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+			Page.Visible = true
 		end)
-		
+
 		Pages:FindFirstChild("Page").Visible = true
 		Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
 		Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+
+		TabHolder.CanvasSize = UDim2.new(0, 0, 0, TabHolderList.AbsoluteContentSize.Y)
 		
 		local PageItems = {}
 		
