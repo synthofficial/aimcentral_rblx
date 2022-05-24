@@ -1,8 +1,9 @@
-local WindowTable = {}
+local library = {}
 
 local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
 
-function WindowTable:Create()
+
+function library:CreateWindow()
 
 	local AimCentralUI = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
@@ -58,18 +59,17 @@ function WindowTable:Create()
 	local TabHandler = {}
 	
 	function TabHandler:Tab(tabname)
-		
 		tabname = tabname or "New Tab"
 		
 		local TabHolder = Instance.new("ScrollingFrame")
-		local UIListLayout = Instance.new("UIListLayout")
+		local TabHolderList = Instance.new("UIListLayout")
 		local TabButton = Instance.new("Frame")
 		local TabButtonCorner = Instance.new("UICorner")
 		local TabButtonName = Instance.new("TextLabel")
 		local TabButtonTrigger = Instance.new("TextButton")
 		local Page = Instance.new("ScrollingFrame")
 		local PageList = Instance.new("UIListLayout")
-
+		
 		TabHolder.Name = "TabHolder"
 		TabHolder.Parent = LeftFrame
 		TabHolder.Active = true
@@ -80,10 +80,9 @@ function WindowTable:Create()
 		TabHolder.Size = UDim2.new(0, 171, 0, 359)
 		TabHolder.ScrollBarThickness = 3
 
-		UIListLayout.Parent = TabHolder
-		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		UIListLayout.Padding = UDim.new(0, 3)
+		TabHolderList.Parent = TabHolder
+		TabHolderList.SortOrder = Enum.SortOrder.LayoutOrder
+		TabHolderList.Padding = UDim.new(0, 3)
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
@@ -112,7 +111,7 @@ function WindowTable:Create()
 		TabButtonTrigger.Text = ""
 		TabButtonTrigger.TextColor3 = Color3.fromRGB(0, 0, 0)
 		TabButtonTrigger.TextSize = 14.000
-		
+
 		Page.Name = "Page"
 		Page.Parent = MainFrame
 		Page.Active = true
@@ -127,10 +126,9 @@ function WindowTable:Create()
 		PageList.Parent = Page
 		PageList.SortOrder = Enum.SortOrder.LayoutOrder
 		PageList.HorizontalAlignment = Enum.HorizontalAlignment.Left
-		PageList.Padding = UDim.new(0, 3)
 		
 		local pagetweenspeed = 0.14
-		
+
 		TabButtonTrigger.MouseButton1Click:Connect(function()
 			for i, v in pairs(TabHolder:GetChildren()) do
 				if v:IsA("Frame") then
@@ -150,10 +148,12 @@ function WindowTable:Create()
 		Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
 		Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
 
-		TabHolder.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
+		TabHolder.CanvasSize = UDim2.new(0, 0, 0, TabHolderList.AbsoluteContentSize.Y)
 		
 	end
 	
+	return TabHandler
+	
 end
 
-return WindowTable
+return library
