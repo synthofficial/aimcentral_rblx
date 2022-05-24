@@ -109,12 +109,6 @@ function WindowTable:Create()
 		TabButtonTrigger.TextColor3 = Color3.fromRGB(0, 0, 0)
 		TabButtonTrigger.TextSize = 14.000
 		
-		TabButtonTrigger.MouseButton1Click:Connect(function()
-			
-			print("Tabs work...???")
-			
-		end)
-		
 	end
 	
 end
