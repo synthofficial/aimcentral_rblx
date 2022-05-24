@@ -1,7 +1,6 @@
 local library = {}
 
 local Utility = game:GetService("HttpService"):GetAsync('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility')
-local UserInputService = game:GetService("UserInputService")
 
 function library:CreateWindow()
 
