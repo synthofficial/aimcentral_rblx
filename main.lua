@@ -13,6 +13,8 @@ function library:CreateWindow()
 	local UICorner = Instance.new("UICorner")
 	local ACLogo = Instance.new("ImageLabel")
 	local Seperator = Instance.new("Frame")
+	local TabHolder = Instance.new("ScrollingFrame")
+	local TabHolderList = Instance.new("UIListLayout")
 
 	AimCentralUI.Name = "AimCentralUI"
 	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -54,15 +56,25 @@ function library:CreateWindow()
 	Seperator.Position = UDim2.new(0, 0, 0.165929213, 0)
 	Seperator.Size = UDim2.new(0, 191, 0, 1)
 
+	TabHolder.Name = "TabHolder"
+	TabHolder.Parent = LeftFrame
+	TabHolder.Active = true
+	TabHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TabHolder.BackgroundTransparency = 1.000
+	TabHolder.BorderSizePixel = 0
+	TabHolder.Position = UDim2.new(0.0366492122, 0, 0.205752209, 0)
+	TabHolder.Size = UDim2.new(0, 171, 0, 359)
+	TabHolder.ScrollBarThickness = 3
 
+	TabHolderList.Parent = TabHolder
+	TabHolderList.SortOrder = Enum.SortOrder.LayoutOrder
+	TabHolderList.Padding = UDim.new(0, 3)
 	
 	local TabHandler = {}
 	
 	function TabHandler:Tab(tabname)
 		tabname = tabname or "New Tab"
 		
-		local TabHolder = Instance.new("ScrollingFrame")
-		local TabHolderList = Instance.new("UIListLayout")
 		local TabButton = Instance.new("Frame")
 		local TabButtonCorner = Instance.new("UICorner")
 		local TabButtonName = Instance.new("TextLabel")
@@ -70,19 +82,7 @@ function library:CreateWindow()
 		local Page = Instance.new("ScrollingFrame")
 		local PageList = Instance.new("UIListLayout")
 		
-		TabHolder.Name = "TabHolder"
-		TabHolder.Parent = LeftFrame
-		TabHolder.Active = true
-		TabHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		TabHolder.BackgroundTransparency = 1.000
-		TabHolder.BorderSizePixel = 0
-		TabHolder.Position = UDim2.new(0.0366492122, 0, 0.205752209, 0)
-		TabHolder.Size = UDim2.new(0, 171, 0, 359)
-		TabHolder.ScrollBarThickness = 3
 
-		TabHolderList.Parent = TabHolder
-		TabHolderList.SortOrder = Enum.SortOrder.LayoutOrder
-		TabHolderList.Padding = UDim.new(0, 3)
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
