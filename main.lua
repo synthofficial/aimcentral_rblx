@@ -1,6 +1,6 @@
 local library = {}
 
-local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
+local Utility = game:GetService("HttpService"):GetAsync('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility')
 local UserInputService = game:GetService("UserInputService")
 
 function library:CreateWindow()
@@ -135,21 +135,21 @@ function library:CreateWindow()
 			for i, v in pairs(TabHolder:GetChildren()) do
 				print(v)
 				if v:IsA("Frame") then
-					Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
-					Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
+					--Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
+					--Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
 				end
 			end
 			for i, v in pairs(Pages:GetChildren()) do
 				v.Visible = false
 			end
-			Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
-			Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+			--Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
+			--Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
 			Page.Visible = true
 		end)
 
 		Pages:FindFirstChild("Page").Visible = true
-		Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
-		Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+		--Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
+		--Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
 
 		TabHolder.CanvasSize = UDim2.new(0, 0, 0, TabHolderList.AbsoluteContentSize.Y)
 		
@@ -459,5 +459,8 @@ function library:CreateWindow()
 	return TabHandler
 	
 end
+
+
+
 
 return library
