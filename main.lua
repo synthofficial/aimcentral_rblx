@@ -1,3 +1,9 @@
+do
+    if CoreGui:FindFirstChild("AimCentralUI") then
+        CoreGui:FindFirstChild("AimCentralUI"):Destroy()
+    end
+end
+
 local library = {}
 
 local UserInputService = game:GetService("UserInputService")
@@ -63,7 +69,7 @@ function library:CreateWindow()
 	
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	AimCentralUI.Parent = game.CoreGui
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
