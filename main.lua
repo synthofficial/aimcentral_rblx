@@ -1,3 +1,5 @@
+local CoreGui = game:GetService("CoreGui")
+
 do
     if CoreGui:FindFirstChild("AimCentralUI") then
         CoreGui:FindFirstChild("AimCentralUI"):Destroy()
