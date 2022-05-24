@@ -1,6 +1,7 @@
 local library = {}
 
---local Utility = game:GetService("HttpService"):GetAsync('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility')
+local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
+local UserInputService = game:GetService("UserInputService")
 
 function library:CreateWindow()
 
@@ -16,7 +17,7 @@ function library:CreateWindow()
 	local TabHolderList = Instance.new("UIListLayout")
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.CoreGui
+	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
@@ -222,6 +223,231 @@ function library:CreateWindow()
 				
 			end
 			
+			function Container:Toggle(togglename, preset, callback)
+				
+				local callback = callback or function() end
+				
+				local Toggle = Instance.new("Frame")
+				local ToggleCorner = Instance.new("UICorner")
+				local ToggleOut = Instance.new("Frame")
+				local ToggleOutCorner = Instance.new("UICorner")
+				local ToggleTrigger = Instance.new("TextButton")
+				local ToggleName = Instance.new("TextLabel")
+				
+				Toggle.Name = "Toggle"
+				Toggle.Parent = Section
+				Toggle.BackgroundColor3 = Color3.fromRGB(52, 52, 53)
+				Toggle.Size = UDim2.new(0, 544, 0, 50)
+
+				ToggleCorner.Name = "ToggleCorner"
+				ToggleCorner.Parent = Toggle
+
+				ToggleOut.Name = "ToggleOut"
+				ToggleOut.Parent = Toggle
+				ToggleOut.BackgroundColor3 = Color3.fromRGB(74, 74, 73)
+				ToggleOut.Position = UDim2.new(0.946691155, 0, 0.25999999, 0)
+				ToggleOut.Size = UDim2.new(0, 20, 0, 20)
+
+				ToggleOutCorner.CornerRadius = UDim.new(0, 4)
+				ToggleOutCorner.Name = "ToggleOutCorner"
+				ToggleOutCorner.Parent = ToggleOut
+
+				ToggleTrigger.Name = "ToggleTrigger"
+				ToggleTrigger.Parent = Toggle
+				ToggleTrigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				ToggleTrigger.BackgroundTransparency = 1.000
+				ToggleTrigger.Size = UDim2.new(0, 544, 0, 50)
+				ToggleTrigger.Font = Enum.Font.SourceSans
+				ToggleTrigger.Text = ""
+				ToggleTrigger.TextColor3 = Color3.fromRGB(0, 0, 0)
+				ToggleTrigger.TextSize = 14.000
+
+				ToggleName.Name = "ToggleName"
+				ToggleName.Parent = Toggle
+				ToggleName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				ToggleName.BackgroundTransparency = 1.000
+				ToggleName.Position = UDim2.new(0.0147058824, 0, 0, 0)
+				ToggleName.Size = UDim2.new(0, 387, 0, 50)
+				ToggleName.Font = Enum.Font.JosefinSans
+				ToggleName.Text = togglename
+				ToggleName.TextColor3 = Color3.fromRGB(255, 255, 255)
+				ToggleName.TextSize = 14.000
+				ToggleName.TextXAlignment = Enum.TextXAlignment.Left
+
+				local toggled = false
+				if preset and preset == true then
+					toggled = true
+				end
+				
+				callback(toggled)
+				
+				ToggleTrigger.MouseButton1Click:Connect(function()
+					toggled = not toggled
+					callback(toggled)
+					
+					if toggled then 
+						game.TweenService:Create(ToggleOut, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							BackgroundColor3 = Color3.fromRGB(255, 109, 83)
+						}):Play()
+						--- We put our animation here when the toggle is on
+					else
+						game.TweenService:Create(ToggleOut, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							BackgroundColor3 = Color3.fromRGB(61, 67, 74)
+						}):Play()
+						---We Put our animation here when the toggle is off
+					end
+					
+				end)
+				
+				Section.Size = Section.Size + UDim2.new(0, 0, 0, Toggle.Size.Y.Offset + SectionItemList.Padding.Offset)
+				Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
+				
+			end
+			
+			function Container:Slider(slidername, minvalue, maxvalue, startvalue, callback)
+				
+				local minvalue = minvalue or 1
+				local maxvalue = maxvalue or 100
+				local startvalue = startvalue or 50
+				local callback = callback or function() end
+				
+				local Slider = Instance.new("Frame")
+				local SliderCorner = Instance.new("UICorner")
+				local SliderName = Instance.new("TextLabel")
+				local SliderOut = Instance.new("ImageLabel")
+				local SliderIn = Instance.new("ImageLabel")
+				local SliderCircle = Instance.new("ImageButton")
+				local SliderValue = Instance.new("TextLabel")
+				local SliderTrigger = Instance.new("TextButton")
+				
+
+				Slider.Name = "Slider"
+				Slider.Parent = Section
+				Slider.BackgroundColor3 = Color3.fromRGB(52, 52, 53)
+				Slider.Position = UDim2.new(0.0125223612, 0, 0.00184162066, 0)
+				Slider.Size = UDim2.new(0, 544, 0, 50)
+
+				SliderCorner.Name = "SliderCorner"
+				SliderCorner.Parent = Slider
+
+				SliderName.Name = "SliderName"
+				SliderName.Parent = Slider
+				SliderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				SliderName.BackgroundTransparency = 1.000
+				SliderName.Position = UDim2.new(0.0147058824, 0, 0, 0)
+				SliderName.Size = UDim2.new(0, 387, 0, 50)
+				SliderName.Font = Enum.Font.JosefinSans
+				SliderName.Text = slidername
+				SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
+				SliderName.TextSize = 14.000
+				SliderName.TextXAlignment = Enum.TextXAlignment.Left
+
+				SliderOut.Name = "SliderOut"
+				SliderOut.Parent = Slider
+				SliderOut.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				SliderOut.BackgroundTransparency = 1.000
+				SliderOut.Position = UDim2.new(0.0129295802, 0, 0.712333381, 0)
+				SliderOut.Size = UDim2.new(0, 527, 0, 9)
+				SliderOut.Image = "rbxassetid://3570695787"
+				SliderOut.ImageColor3 = Color3.fromRGB(45, 45, 44)
+				SliderOut.ImageTransparency = 0.400
+				SliderOut.ScaleType = Enum.ScaleType.Slice
+				SliderOut.SliceCenter = Rect.new(100, 100, 100, 100)
+				SliderOut.SliceScale = 0.100
+
+				SliderIn.Name = "SliderIn"
+				SliderIn.Parent = SliderOut
+				SliderIn.BackgroundColor3 = Color3.fromRGB(250, 128, 114)
+				SliderIn.BackgroundTransparency = 1.000
+				SliderIn.Size = UDim2.new(0, 234, 0, 10)
+				SliderIn.Image = "rbxassetid://3570695787"
+				SliderIn.ImageColor3 = Color3.fromRGB(250, 128, 114)
+				SliderIn.ImageTransparency = 0.200
+				SliderIn.ScaleType = Enum.ScaleType.Slice
+				SliderIn.SliceCenter = Rect.new(100, 100, 100, 100)
+				SliderIn.SliceScale = 0.300
+
+				SliderCircle.Name = "SliderCircle"
+				SliderCircle.Parent = SliderOut
+				SliderCircle.BackgroundTransparency = 1.000
+				SliderCircle.Position = UDim2.new(0.426666647, 0, -0.599999964, 0)
+				SliderCircle.Size = UDim2.new(0, 22, 0, 22)
+				SliderCircle.Image = "rbxassetid://3926305904"
+				SliderCircle.ImageColor3 = Color3.fromRGB(250, 128, 114)
+				SliderCircle.ImageRectOffset = Vector2.new(204, 484)
+				SliderCircle.ImageRectSize = Vector2.new(36, 36)
+
+				SliderValue.Name = "SliderValue"
+				SliderValue.Parent = Slider
+				SliderValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				SliderValue.BackgroundTransparency = 1.000
+				SliderValue.Position = UDim2.new(0.904411733, 0, 0.340000004, 0)
+				SliderValue.Size = UDim2.new(0, 55, 0, 18)
+				SliderValue.Font = Enum.Font.JosefinSans
+				SliderValue.Text = "50"
+				SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+				SliderValue.TextSize = 14.000
+
+				SliderTrigger.Name = "SliderTrigger"
+				SliderTrigger.Parent = Slider
+				SliderTrigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				SliderTrigger.BackgroundTransparency = 1.000
+				SliderTrigger.Size = UDim2.new(0, 544, 0, 50)
+				SliderTrigger.Font = Enum.Font.SourceSans
+				SliderTrigger.Text = ""
+				SliderTrigger.TextColor3 = Color3.fromRGB(0, 0, 0)
+				SliderTrigger.TextSize = 14.000
+				
+				local dragging = false
+				local value = startvalue
+				
+				callback(value)
+				
+				do
+					SliderCircle.Position = UDim2.new((startvalue or 0) / maxvalue, -10, -0.6, 0)
+					SliderIn.Size = UDim2.new((startvalue or 0) / maxvalue, 0, 0, 10)
+				end
+				
+				local function move(input)
+					local pos = UDim2.new(math.clamp((input.Position.X - SliderOut.AbsolutePosition.X) / SliderOut.AbsoluteSize.X, 0, 1), -10, -0.6,0)
+					local pos1 = UDim2.new(math.clamp((input.Position.X - SliderOut.AbsolutePosition.X) / SliderOut.AbsoluteSize.X, 0, 1), 0, 0, 10)
+					SliderIn:TweenSize(pos1, "Out", "Sine", 0.2, true)
+					SliderCircle:TweenPosition(pos, "Out", "Sine", 0.2, true)
+					value = math.floor(((pos.X.Scale * maxvalue) / maxvalue) * (maxvalue - minvalue) + minvalue)
+					SliderName.Text = (slidername or "Slider").." - "..tostring(value)
+					callback(value)
+				end
+				
+				SliderCircle.InputBegan:Connect(
+					function(input)
+						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							dragging = true
+						end
+					end
+				)
+				SliderCircle.InputEnded:Connect(
+					function(input)
+						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							dragging = false
+						end
+					end
+				)
+				UserInputService.InputChanged:Connect(function(input)
+					if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+						move(input)
+						Utility:Tween(SliderCircle, 0.2, {ImageColor3 = Color3.fromRGB(250, 128, 114)})
+						Utility:Tween(SliderIn, 0.2, {ImageColor3 = Color3.fromRGB(250, 128, 114)})
+					elseif not dragging then
+						Utility:Tween(SliderCircle, 0.2, {ImageColor3 = Color3.fromRGB(255, 255, 255)})
+						Utility:Tween(SliderIn, 0.2, {ImageColor3 = Color3.fromRGB(255, 255, 255)})
+					end
+				end)
+				
+				Section.Size = Section.Size + UDim2.new(0, 0, 0, Slider.Size.Y.Offset + SectionItemList.Padding.Offset)
+				Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
+				
+			end
+			
 			return Container
 			
 		end
@@ -233,4 +459,5 @@ function library:CreateWindow()
 	return TabHandler
 	
 end
+
 return library
