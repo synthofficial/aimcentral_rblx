@@ -1,9 +1,9 @@
 local CoreGui = game:GetService("CoreGui")
 
 do
-    if CoreGui:FindFirstChild("AimCentralUI") then
-        CoreGui:FindFirstChild("AimCentralUI"):Destroy()
-    end
+	if CoreGui:FindFirstChild("AimCentralUI") then
+		CoreGui:FindFirstChild("AimCentralUI"):Destroy()
+	end
 end
 
 local library = {}
@@ -11,7 +11,7 @@ local library = {}
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local TweenService = game:getService("TweenService")
-local player = game:GetService("Players").Name
+local CoreGui = game:GetService("CoreGui")
 
 function Tween(instance, duration, properties, waituntildone, optionalproperties)
 	local waituntildone = waituntildone or false
@@ -39,45 +39,15 @@ function library:CreateWindow()
 	
 	local NotificationText = Instance.new("TextLabel")
 	
-	local Welcome = Instance.new("TextLabel")
-	
-	
-	
-	local function EFWI_fake_script() -- Welcome.LocalScript 
-		local script = Instance.new('LocalScript', Welcome)
-
-		--//SHADZYDEV//--
-		local r = {
-			Color3.fromRGB(254, 0, 0);		--red
-			Color3.fromRGB(255, 127, 0);	--orange
-			Color3.fromRGB(255, 221, 1);	--yellow
-			Color3.fromRGB(0, 200, 0);		--green
-			Color3.fromRGB(0, 160, 199);	--light blue
-			Color3.fromRGB(0, 55, 230);		--dark blue
-			Color3.fromRGB(129, 16, 210)}	--purple
-		local info = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, 0, false, 0)
-		script.Parent.TextColor3 = r[1]
-		local i = 1
-		while true do
-			local tween = game:GetService("TweenService"):Create(script.Parent, info, {
-				TextColor3 = r[i]})
-			tween:Play()
-			repeat wait() until tween.Completed
-			wait(0.1)
-			if i == #r then i = 1 else i = i + 1 end
-		end
-	end
-	coroutine.wrap(EFWI_fake_script)()
-	
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.CoreGui
+	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
 	MainFrame.Parent = AimCentralUI
 	MainFrame.BackgroundColor3 = Color3.fromRGB(53, 53, 52)
-	MainFrame.Position = UDim2.new(0, 1000, 0, 1000)
+	MainFrame.Position = UDim2.new(0.287, 0, 0.162, 0)
 	MainFrame.Size = UDim2.new(0, 749, 0, 452)
 
 	Pages.Name = "Pages"
