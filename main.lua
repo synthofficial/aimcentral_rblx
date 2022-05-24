@@ -1,6 +1,6 @@
 local library = {}
 
-local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
+local Utility = loadstring(game:HttpGet('https://hold4564.de/utility.lua'))()
 local UserInputService = game:GetService("UserInputService")
 
 function library:CreateWindow()
