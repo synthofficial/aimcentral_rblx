@@ -12,7 +12,7 @@ function WindowTable:Create()
 	local Seperator = Instance.new("Frame")
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	AimCentralUI.Parent = game.CoreGui
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
