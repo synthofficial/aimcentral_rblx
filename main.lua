@@ -1,7 +1,6 @@
 local library = {}
 
-local Utility = loadstring(game:HttpGet('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility'))()
-
+--local Utility = game:GetService("HttpService"):GetAsync('https://raw.githubusercontent.com/Holdigen/Random-Scripts/main/Utility')
 
 function library:CreateWindow()
 
@@ -17,7 +16,7 @@ function library:CreateWindow()
 	local TabHolderList = Instance.new("UIListLayout")
 
 	AimCentralUI.Name = "AimCentralUI"
-	AimCentralUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	AimCentralUI.Parent = game.CoreGui
 	AimCentralUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
@@ -113,7 +112,7 @@ function library:CreateWindow()
 		TabButtonTrigger.TextSize = 14.000
 
 		Page.Name = "Page"
-		Page.Parent = MainFrame
+		Page.Parent = Pages
 		Page.Active = true
 		Page.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Page.BackgroundTransparency = 1.000
@@ -121,39 +120,117 @@ function library:CreateWindow()
 		Page.Position = UDim2.new(0.245660886, 0, 0.0154867256, 0)
 		Page.Size = UDim2.new(0, 559, 0, 439)
 		Page.ScrollBarThickness = 3
+		Page.Visible = false
 
 		PageList.Name = "PageList"
 		PageList.Parent = Page
 		PageList.SortOrder = Enum.SortOrder.LayoutOrder
 		PageList.HorizontalAlignment = Enum.HorizontalAlignment.Left
+		PageList.Padding = UDim.new(0, 3)
 		
 		local pagetweenspeed = 0.14
 
 		TabButtonTrigger.MouseButton1Click:Connect(function()
 			for i, v in pairs(TabHolder:GetChildren()) do
+				print(v)
 				if v:IsA("Frame") then
-					Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
-					Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
+					--Utility:Tween(v, pagetweenspeed, {BackgroundTransparency = 1})
+					--Utility:Tween(v.TabButtonName, pagetweenspeed, {TextTransparency = 0.550})
 				end
 			end
 			for i, v in pairs(Pages:GetChildren()) do
 				v.Visible = false
 			end
-			Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
-			Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+			--Utility:Tween(TabButton, pagetweenspeed, {BackgroundTransparency = 0})
+			--Utility:Tween(TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
 			Page.Visible = true
 		end)
 
 		Pages:FindFirstChild("Page").Visible = true
-		Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
-		Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
+		--Utility:Tween(TabHolder:FindFirstChild("TabButton"), pagetweenspeed, {BackgroundTransparency = 0})
+		--Utility:Tween(TabHolder:FindFirstChild("TabButton").TabButtonName, pagetweenspeed, {TextTransparency = 0.2})
 
 		TabHolder.CanvasSize = UDim2.new(0, 0, 0, TabHolderList.AbsoluteContentSize.Y)
+		
+		local Components = {}
+
+		function Components:Section(sectionname)
+			
+			sectionname = sectionname or "Section"
+			
+			local Section = Instance.new("Frame")
+			local SectionCorner = Instance.new("UICorner")
+			local SectionItemList = Instance.new("UIListLayout")
+			local SectionName = Instance.new("TextLabel")
+
+			Section.Name = "Section"
+			Section.Parent = Page
+			Section.BackgroundColor3 = Color3.fromRGB(45, 45, 44)
+			Section.Size = UDim2.new(0, 559, 0, 543)
+
+			SectionCorner.CornerRadius = UDim.new(0, 4)
+			SectionCorner.Name = "SectionCorner"
+			SectionCorner.Parent = Section
+
+			SectionItemList.Name = "SectionItemList"
+			SectionItemList.Parent = Section
+			SectionItemList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+			SectionItemList.SortOrder = Enum.SortOrder.LayoutOrder
+			SectionItemList.Padding = UDim.new(0, 2)
+
+			SectionName.Name = "SectionName"
+			SectionName.Parent = Section
+			SectionName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SectionName.BackgroundTransparency = 1.000
+			SectionName.Position = UDim2.new(0.321109116, 0, 0, 0)
+			SectionName.Size = UDim2.new(0, 555, 0, 39)
+			SectionName.Font = Enum.Font.JosefinSans
+			SectionName.Text = sectionname
+			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
+			SectionName.TextSize = 14.000
+
+			Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
+			
+			local Container = {}
+			
+			function Container:Button(buttontext, callback)
+				buttontext = buttontext or "Button"
+				local callback = callback or function() end
+				
+				local Button = Instance.new("TextButton")
+				local ButtonCorner = Instance.new("UICorner")
+				
+				Button.Name = "Button"
+				Button.Parent = Section
+				Button.BackgroundColor3 = Color3.fromRGB(52, 52, 53)
+				Button.Position = UDim2.new(0, 0, 0.0644567236, 0)
+				Button.Size = UDim2.new(0, 544, 0, 50)
+				Button.Font = Enum.Font.JosefinSans
+				Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+				Button.TextSize = 14.000
+				Button.Text = buttontext
+
+				ButtonCorner.Name = "ButtonCorner"
+				ButtonCorner.Parent = Button
+				
+				Button.MouseButton1Click:Connect(function()
+					callback()
+				end)
+
+				Section.Size = Section.Size + UDim2.new(0, 0, 0, Button.Size.Y.Offset + SectionItemList.Padding.Offset)
+				Page.CanvasSize = UDim2.new(0, 0, 0, PageList.AbsoluteContentSize.Y)
+				
+			end
+			
+			return Container
+			
+		end
+		
+		return Components
 		
 	end
 	
 	return TabHandler
 	
 end
-
 return library
