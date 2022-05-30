@@ -34,7 +34,7 @@ function lib:Create(hubname)
 	--Properties:
 
 	ZephyrMain.Name = "ZephyrMain"
-	ZephyrMain.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	ZephyrMain.Parent = game.CoreGui
 	ZephyrMain.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
